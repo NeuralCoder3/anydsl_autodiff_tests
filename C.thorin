@@ -1,0 +1,25 @@
+module 'C
+        
+        main_942: cn [:mem, cn [:mem, i32]] = {
+            %_953: [:mem, cn [:mem, i32]] = .var main_942;
+        nimm argumente von Main (Speicher und return continuation)
+            %mem_957: :mem = .extract %_953, 0∷i1;
+        nimm das Argument Null (Speicher)
+            %_963: [:mem, i32] = (%mem_957, 13∷i32);
+        Erstelle 13 in den Speicher
+            %_964: ⊥∷★ = return_952 %_963;
+        rufe return mit Zahl als Argument auf
+            -> λ@(0∷i1) %_964;
+        beende
+        }
+            
+            return_952: cn [:mem, i32] = {
+                %return_954: cn [:mem, i32] = .extract %_953, 1∷i1;
+            nimm return continuation aus den argumenten von main
+                %_955: [:mem, i32] = .var return_952;
+            nimm das argument von dieser return function
+                %return_956: ⊥∷★ = %return_954 %_955;
+            gib es an die Return continuation
+                -> λ@(0∷i1) %return_956;
+            beende
+            }

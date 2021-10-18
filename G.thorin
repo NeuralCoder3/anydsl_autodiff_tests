@@ -1,0 +1,57 @@
+module 'G
+        
+    take int and continuation from int 
+    => int, ret: int -> *
+    => int -> int
+        barf_707: cn [:mem, r32, cn [:mem, r32]] = {
+            %_720: [:mem, r32, cn [:mem, r32]] = .var barf_707;
+        return cont
+            %return_734: cn [:mem, r32] = .extract %_720, 2∷i₃;
+        memory
+            %mem_721: :mem = .extract %_720, 0∷i₃;
+        argument
+            %a_727: r32 = .extract %_720, 1∷i₃;
+        1,arg
+            %_753: «2∷nat; r32» = (1∷r32, %a_727);
+        +(1,arg)
+            %_754: r32 = :ROp_add (0∷nat, 32∷nat) %_753;
+        wrap it
+            %_757: [:mem, r32] = (%mem_721, %_754);
+        return it
+            %_758: ⊥∷★ = %return_734 %_757;
+            -> λ@(0∷i1) %_758;
+        }
+        
+    take nothing, return int
+        main_719: cn [:mem, cn [:mem, i32]] = {
+    take r32   (eval context?)
+    return r32 and function r32 -> r32
+      (result and linear map?)
+            %_776: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = :rev_diff ‹2∷nat; r32› barf_707;
+        get main args
+            %_759: [:mem, cn [:mem, i32]] = .var main_719;
+        current memory
+            %mem_760: :mem = .extract %_759, 0∷i1;
+        argument for rev_diff of barf
+        memory, input (3) and continuation (taking result and returning linear map?)
+            %_792: [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = (%mem_760, 3∷r32, _cont_789);
+            %_cont_793: ⊥∷★ = %_776 %_792;
+            -> λ@(0∷i1) %_cont_793;
+        }
+            
+        take r32 and return (r32->r32)
+        taking result and returning linear map?
+            _cont_789: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = {
+        return function from main
+                %return_765: cn [:mem, i32] = .extract %_759, 1∷i1;
+                %_790: [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = .var _cont_789;
+            get memory
+                %mem_791: :mem = .extract %_790, 0∷i₃;
+            create argument to return
+                (memory and return expression 42)
+                %_804: [:mem, i32] = (%mem_791, 42∷i32);
+            return
+                %_805: ⊥∷★ = %return_765 %_804;
+                -> λ@(0∷i1) %_805;
+            }
+

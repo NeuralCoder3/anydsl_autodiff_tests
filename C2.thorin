@@ -1,0 +1,17 @@
+module 'C
+        
+        main_706: cn [:mem, cn [:mem, i32]] = {
+            %_707: [:mem, cn [:mem, i32]] = .var main_706;
+        take arguments of main (speicher und return continuation)
+            %return_715: cn [:mem, i32] = .extract %_707, 1∷i1;
+        nimm das Argument 1 (return continuation)
+            %mem_708: :mem = .extract %_707, 0∷i1;
+        nimm das Argument 0 (Speicher)
+            %_734: [:mem, i32] = (%mem_708, 13∷i32);
+        Neuer Speicher mit Integer aus Speicher
+            %_735: ⊥∷★ = %return_715 %_734;
+        Return den Speicher mit Integer
+          get final continuation
+            -> λ@(0∷i1) %_735;
+        beende 
+        }

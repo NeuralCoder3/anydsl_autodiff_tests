@@ -1,0 +1,41 @@
+// fn range(mut a: int, b: int, body: fn(int) -> ()) -> () {
+    // while a < b {
+        // body(a);
+        // a += 1;
+    // }
+// }
+
+fn foo() -> i32 { 1 }
+fn bar(a:i32) -> i32 { a+1 }
+fn barf(a:f32) -> f32 { a + 1f }
+
+
+fn main() -> i32 {
+    // for i in range(0,1) {
+
+    // }
+    // let a = bar(12);
+      // let mut s = 0;
+      // let mut i = 0;
+      // while i < 1 {
+          // i+=1;
+      // }
+    // let x = bar(2);
+    // let x = rev_diff(|y:i32| -> i32 bar(y));
+    let y = bar(2);
+    // let x = (rev_diff(bar))(
+    let x = (
+        |y:i32| -> i32 
+        2
+    );
+    // let z = rev_diff(bar);
+    let z = rev_diff(barf);
+    // let z = (rev_diff(bar))(
+        // |y:i32| -> i32 
+        // 2
+    // );
+    //let x = (rev_diff(bar));
+
+    42+x(2)//+s
+
+}

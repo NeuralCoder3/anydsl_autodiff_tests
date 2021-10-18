@@ -1,0 +1,13 @@
+main(i: u32, return: fn(u32))
+    u1 cond = cmp_eq i, u32 0
+    fn() to = select cond, if_then, if_else
+    to()
+
+if_then()
+    next(23)
+
+if_else()
+    next(42)
+
+next(a: u32)
+    return(a)

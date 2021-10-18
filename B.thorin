@@ -1,0 +1,161 @@
+module 'B
+        
+        continue_802: cn :mem = {
+            %_803: :mem = .var continue_802;
+            %_875: ⊥∷★ = while_head_785 %_803;
+            -> λ@(0∷i1) %_875;
+        }
+        
+        range_707: cn [:mem, i32, i32, cn [:mem, i32, cn :mem], cn :mem] = {
+            %_731: [:mem, i32, i32, cn [:mem, i32, cn :mem], cn :mem] = .var range_707;
+            %mem_732: :mem = .extract %_731, 0∷i₅;
+            %_749: [:mem, nat] = (%mem_732, 738∷nat);
+            %a_750: [:mem, i32*] = :slot (i32, 0∷nat) %_749;
+            %_751: :mem = .extract %a_750, 0∷i1;
+            %_752: i32* = .extract %a_750, 1∷i1;
+            %a_738: i32 = .extract %_731, 1∷i₅;
+            %_759: [:mem, i32*, i32] = (%_751, %_752, %a_738);
+            %_760: :mem = :store (i32, 0∷nat) %_759;
+            %_811: ⊥∷★ = while_head_785 %_760;
+            -> λ@(0∷i1) %_811;
+        }
+            
+            break_806: cn :mem = {
+                %return_779: cn :mem = .extract %_731, 4∷i₅;
+                %_807: :mem = .var break_806;
+                %_880: ⊥∷★ = %return_779 %_807;
+                -> λ@(0∷i1) %_880;
+            }
+            
+            while_exit_796: cn :mem = {
+                %_876: :mem = .var while_exit_796;
+                %_877: ⊥∷★ = break_806 %_876;
+                -> λ@(0∷i1) %_877;
+            }
+            
+            body_cont_848: cn :mem = {
+                %_849: :mem = .var body_cont_848;
+                %_859: [:mem, i32*] = (%_849, %_752);
+                %_860: [:mem, i32] = :load (i32, 0∷nat) %_859;
+                %_861: :mem = .extract %_860, 0∷i1;
+                %_862: i32 = .extract %_860, 1∷i1;
+                %_869: «2∷nat; i32» = (1∷i32, %_862);
+                %_870: i32 = :Wrap_add (1∷nat, 4294967296∷nat) %_869;
+                %_871: [:mem, i32*, i32] = (%_861, %_752, %_870);
+                %_872: :mem = :store (i32, 0∷nat) %_871;
+                %_874: ⊥∷★ = continue_802 %_872;
+                -> λ@(0∷i1) %_874;
+            }
+            
+            while_body_791: cn :mem = {
+                %body_771: cn [:mem, i32, cn :mem] = .extract %_731, 3∷i₅;
+                %_834: :mem = .var while_body_791;
+                %_838: [:mem, i32*] = (%_834, %_752);
+                %_839: [:mem, i32] = :load (i32, 0∷nat) %_838;
+                %_840: :mem = .extract %_839, 0∷i1;
+                %_841: i32 = .extract %_839, 1∷i1;
+                %_850: [:mem, i32, cn :mem] = (%_840, %_841, body_cont_848);
+                %body_cont_851: ⊥∷★ = %body_771 %_850;
+                -> λ@(0∷i1) %body_cont_851;
+            }
+            
+            while_head_785: cn :mem = {
+                %_831: «2∷nat; cn :mem» = (while_exit_796, while_body_791);
+                %_786: :mem = .var while_head_785;
+                %_820: [:mem, i32*] = (%_786, %_752);
+                %_821: [:mem, i32] = :load (i32, 0∷nat) %_820;
+                %_823: i32 = .extract %_821, 1∷i1;
+                %b_765: i32 = .extract %_731, 2∷i₅;
+                %_828: «2∷nat; i32» = (%_823, %b_765);
+                %_829: i1 = :ICmp_sl 4294967296∷nat %_828;
+                %_832: cn :mem = .extract %_831, %_829;
+                %_822: :mem = .extract %_821, 0∷i1;
+                %_833: ⊥∷★ = %_832 %_822;
+                -> λ@(0∷i1) %_833;
+            }
+        
+        _966: ★ = {
+            -> «⊤∷nat; i32»;
+        }
+        
+        dot_721: cn [:mem, «⊤∷nat; i32»*, «⊤∷nat; i32»*, i32, cn [:mem, i32]] = {
+            %_881: [:mem, «⊤∷nat; i32»*, «⊤∷nat; i32»*, i32, cn [:mem, i32]] = .var dot_721;
+            %mem_882: :mem = .extract %_881, 0∷i₅;
+            %_912: [:mem, nat] = (%mem_882, 910∷nat);
+            %sum_913: [:mem, i32*] = :slot (i32, 0∷nat) %_912;
+            %_914: :mem = .extract %sum_913, 0∷i1;
+            %_915: i32* = .extract %sum_913, 1∷i1;
+            %_917: [:mem, i32*, i32] = (%_914, %_915, 0∷i32);
+            %_918: :mem = :store (i32, 0∷nat) %_917;
+            %n_897: i32 = .extract %_881, 3∷i₅;
+            %_1011: [:mem, i32, i32, cn [:mem, i32, cn :mem], cn :mem] = (%_918, 0∷i32, %n_897, lambda_931, break_922);
+            %_1012: ⊥∷★ = range_707 %_1011;
+            -> λ@(0∷i1) %_1012;
+        }
+            
+            lambda_931: cn [:mem, i32, cn :mem] = {
+                %_932: [:mem, i32, cn :mem] = .var lambda_931;
+                %continue_942: cn :mem = .extract %_932, 2∷i₃;
+                %mem_933: :mem = .extract %_932, 0∷i₃;
+                %_976: %_975 = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat);
+                %a_887: «⊤∷nat; i32»* = .extract %_881, 1∷i₅;
+                %i_937: i32 = .extract %_932, 1∷i₃;
+                %_958: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) %i_937;
+                %_978: [«⊤∷nat; i32»*, : ⊤∷nat] = (%a_887, %_958);
+                %_979: i32* = %_976 %_978;
+                %_980: [:mem, i32*] = (%mem_933, %_979);
+                %_981: [:mem, i32] = :load (i32, 0∷nat) %_980;
+                %_982: :mem = .extract %_981, 0∷i1;
+                %b_892: «⊤∷nat; i32»* = .extract %_881, 2∷i₅;
+                %_987: [«⊤∷nat; i32»*, : ⊤∷nat] = (%b_892, %_958);
+                %_988: i32* = %_976 %_987;
+                %_989: [:mem, i32*] = (%_982, %_988);
+                %_990: [:mem, i32] = :load (i32, 0∷nat) %_989;
+                %_991: :mem = .extract %_990, 0∷i1;
+                %_996: [:mem, i32*] = (%_991, %_915);
+                %_997: [:mem, i32] = :load (i32, 0∷nat) %_996;
+                %_998: :mem = .extract %_997, 0∷i1;
+                %_983: i32 = .extract %_981, 1∷i1;
+                %_992: i32 = .extract %_990, 1∷i1;
+                %_994: «2∷nat; i32» = (%_983, %_992);
+                %_995: i32 = :Wrap_mul (1∷nat, 4294967296∷nat) %_994;
+                %_999: i32 = .extract %_997, 1∷i1;
+                %_1001: «2∷nat; i32» = (%_995, %_999);
+                %_1002: i32 = :Wrap_add (1∷nat, 4294967296∷nat) %_1001;
+                %_1003: [:mem, i32*, i32] = (%_998, %_915, %_1002);
+                %_1004: :mem = :store (i32, 0∷nat) %_1003;
+                %_1006: ⊥∷★ = %continue_942 %_1004;
+                -> λ@(0∷i1) %_1006;
+            }
+            
+            break_922: cn :mem = {
+                %return_902: cn [:mem, i32] = .extract %_881, 4∷i₅;
+                %_923: :mem = .var break_922;
+                %_1022: [:mem, i32*] = (%_923, %_915);
+                %_1023: [:mem, i32] = :load (i32, 0∷nat) %_1022;
+                %_1028: ⊥∷★ = %return_902 %_1023;
+                -> λ@(0∷i1) %_1028;
+            }
+        
+        main_730: cn [:mem, cn [:mem, i32]] = {
+            %_1029: [:mem, cn [:mem, i32]] = .var main_730;
+            %mem_1030: :mem = .extract %_1029, 0∷i1;
+            %_1096: [:mem, «⊤∷nat; i32»*, «⊤∷nat; i32»*, i32, cn [:mem, i32]] = 
+            (%mem_1030,
+             :bitcast («⊤∷nat; i32»*, «2∷nat; i32»*) .global 1068∷nat, (42∷i32, 43∷i32),
+              :bitcast («⊤∷nat; i32»*, «2∷nat; i32»*) .global 1080∷nat, (12∷i32, 13∷i32), 
+              2∷i32, 
+              dot_cont_1093);
+            %dot_cont_1097: ⊥∷★ = dot_721 %_1096;
+            -> λ@(0∷i1) %dot_cont_1097;
+        }
+            
+            dot_cont_1093: cn [:mem, i32] = {
+                %return_1035: cn [:mem, i32] = .extract %_1029, 1∷i1;
+                %_1094: [:mem, i32] = .var dot_cont_1093;
+                %mem_1095: :mem = .extract %_1094, 0∷i1;
+                %_1105: [:mem, i32] = (%mem_1095, 42∷i32);
+                %_1106: ⊥∷★ = %return_1035 %_1105;
+                -> λ@(0∷i1) %_1106;
+            }
+

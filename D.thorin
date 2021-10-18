@@ -1,0 +1,57 @@
+module 'D
+        
+        main_706: cn [:mem, cn [:mem, i32]] = {
+            %_707: [:mem, cn [:mem, i32]] = .var main_706;
+            %return_715: cn [:mem, i32] = .extract %_707, 1∷i1;
+            %mem_708: :mem = .extract %_707, 0∷i1;
+            %_737: [:mem, nat] = (%mem_708, 726∷nat);
+        create int at pos 0
+            %a_738: [:mem, i32*] = :slot (i32, 0∷nat) %_737;
+            %_739: :mem = .extract %a_738, 0∷i1;
+            %_740: i32* = .extract %a_738, 1∷i1;
+        speicheranweisung a=42
+            %_746: [:mem, i32*, i32] = (%_739, %_740, 42∷i32);
+        schreibe
+            %_747: :mem = :store (i32, 0∷nat) %_746;
+            %_760: [:mem, i32*] = (%_747, %_740);
+        lade wert von a
+            %_761: [:mem, i32] = :load (i32, 0∷nat) %_760;
+            %_762: :mem = .extract %_761, 0∷i1;
+            %_763: i32 = .extract %_761, 1∷i1;
+        baue argument (2,wert von a) für addition
+            %_775: «2∷nat; i32» = (2∷i32, %_763);
+        addiere
+            %_776: i32 = :Wrap_add (1∷nat, 4294967296∷nat) %_775;
+        baue speicheranweisung
+            %_777: [:mem, i32*, i32] = (%_762, %_740, %_776);
+        schreibe
+            %_778: :mem = :store (i32, 0∷nat) %_777;
+            %_785: [:mem, i32*] = (%_778, %_740);
+        lade wert von a
+            %_786: [:mem, i32] = :load (i32, 0∷nat) %_785;
+            %_787: :mem = .extract %_786, 0∷i1;
+            %_788: i32 = .extract %_786, 1∷i1;
+            %_793: «2∷nat; i32» = (3∷i32, %_788);
+            %_794: i32 = :Wrap_add (1∷nat, 4294967296∷nat) %_793;
+            %_797: [:mem, i32] = (%_787, %_794);
+            %_798: ⊥∷★ = %return_715 %_797;
+            -> λ@(0∷i1) %_798;
+        }
+
+    module 'D
+        
+        main_1021: cn [:mem, cn [:mem, i32]] = {
+            %_1032: [:mem, cn [:mem, i32]] = .var main_1021;
+            %mem_1036: :mem = .extract %_1032, 0∷i1;
+            %_1042: [:mem, i32] = (%mem_1036, 47∷i32);
+        returne memory und ergebnis 47
+            %_1043: ⊥∷★ = return_1031 %_1042;
+            -> λ@(0∷i1) %_1043;
+        }
+            
+            return_1031: cn [:mem, i32] = {
+                %return_1033: cn [:mem, i32] = .extract %_1032, 1∷i1;
+                %_1034: [:mem, i32] = .var return_1031;
+                %return_1035: ⊥∷★ = %return_1033 %_1034;
+                -> λ@(0∷i1) %return_1035;
+            }

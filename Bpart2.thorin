@@ -1,0 +1,109 @@
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+AutoDiff rewrite Callee app in app.
+is axiom
+module 'Bpart
+        
+        _3040: ★ = {
+            -> «⊤∷nat; i32»;
+        }
+        
+        main_2929: cn [:mem, cn [:mem, i32]] = {
+            %_2957: [:mem, cn [:mem, i32]] = .var main_2929;
+            %mem_3190: :mem = .extract %_2957, 0∷i1;
+            %_3191: [:mem, i32] = (%mem_3190, 0∷i32);
+            %_3192: ⊥∷★ = while_head_2935 %_3191;
+            -> λ@(0∷i1) %_3192;
+        }
+            
+            return_2956: cn [:mem, i32] = {
+                %return_2958: cn [:mem, i32] = .extract %_2957, 1∷i1;
+                %_2959: [:mem, i32] = .var return_2956;
+                %return_2960: ⊥∷★ = %return_2958 %_2959;
+                -> λ@(0∷i1) %return_2960;
+            }
+            
+            break_2947: cn :mem = {
+                %_2961: :mem = .var break_2947;
+                %_2967: [:mem, i32] = (%_2961, 42∷i32);
+                %_2968: ⊥∷★ = return_2956 %_2967;
+                -> λ@(0∷i1) %_2968;
+            }
+            
+            while_head_2935: cn [:mem, i32] = {
+                %_3168: «2∷nat; cn :mem» = (break_2947, while_body_2973);
+                %_3103: [:mem, i32] = .var while_head_2935;
+                %_3104: i32 = .extract %_3103, 1∷i1;
+                %_3185: «2∷nat; i32» = (%_3104, 3∷i32);
+                %_3186: i1 = :ICmp_sl 4294967296∷nat %_3185;
+                %_3187: cn :mem = .extract %_3168, %_3186;
+                %_3188: :mem = .extract %_3103, 0∷i1;
+                %_3189: ⊥∷★ = %_3187 %_3188;
+                -> λ@(0∷i1) %_3189;
+            }
+                
+                while_body_2973: cn :mem = {
+                    %_3001: :mem = .var while_body_2973;
+                    %_3050: %_3049 = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat);
+                    %_3105: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) %_3104;
+                    %_3106: [«⊤∷nat; i32»*, : ⊤∷nat] = (:bitcast («⊤∷nat; i32»*, «3∷nat; i32»*) .global 1089∷nat, (42∷i32, 43∷i32, 44∷i32), %_3105);
+                    %_3107: i32* = %_3050 %_3106;
+                    %_3108: [:mem, i32*] = (%_3001, %_3107);
+                    %_3109: [:mem, i32] = :load (i32, 0∷nat) %_3108;
+                    %_3110: :mem = .extract %_3109, 0∷i1;
+                    %_3137: [«⊤∷nat; i32»*, : ⊤∷nat] = (:bitcast («⊤∷nat; i32»*, «3∷nat; i32»*) .global 1101∷nat, (12∷i32, 13∷i32, 14∷i32), %_3105);
+                    %_3138: i32* = %_3050 %_3137;
+                    %_3139: [:mem, i32*] = (%_3110, %_3138);
+                    %_3140: [:mem, i32] = :load (i32, 0∷nat) %_3139;
+                    %_3141: :mem = .extract %_3140, 0∷i1;
+                    %_3163: «2∷nat; i32» = (1∷i32, %_3104);
+                    %_3165: i32 = :Wrap_add (1∷nat, 4294967296∷nat) %_3163;
+                    %_3166: [:mem, i32] = (%_3141, %_3165);
+                    %_3167: ⊥∷★ = while_head_2935 %_3166;
+                    -> λ@(0∷i1) %_3167;
+                }
+

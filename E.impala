@@ -1,0 +1,9 @@
+fn foo() -> i32 { 1 }
+
+fn main() -> i32 {
+    let mut s=0;
+    let a = [42/3];
+    let b = 5;
+    s+=a(0)*b;
+    42+foo()
+}

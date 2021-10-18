@@ -1,0 +1,9 @@
+fn barf(a:f32) -> f32 { a + 1f }
+
+fn main() -> i32 {
+    let z = rev_diff(barf);
+    let x = z(3f);
+
+    42//+s
+
+}
