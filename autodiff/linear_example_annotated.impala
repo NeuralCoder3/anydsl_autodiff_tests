@@ -1,0 +1,12 @@
+fn barf(a: f32) -> f32 {
+    a + 1f
+}
+fn main() -> i32 {
+    let z: fn(f32) -> (f32, fn(f32) -> f32) = rev_diff(barf);
+    let x: (f32, fn(f32) -> f32) = z(3f);
+    let x_res: f32 = x(0);
+    let x_prime: fn(f32) -> f32 = x(1);
+    let r: i32 = x_res as i32;
+    let q: i32 = x_prime(5f) as i32;
+    42 + r * q
+}

@@ -1,0 +1,19 @@
+Start Opti1
+Finished Opti1
+module 'linear_example
+        
+        main_1220: cn [:mem, cn [:mem, i32]] = {
+            %_1231: [:mem, cn [:mem, i32]] = .var main_1220;
+            %mem_1235: :mem = .extract %_1231, 0∷i1;
+            %_1241: [:mem, i32] = (%mem_1235, 62∷i32);
+            %_1242: ⊥∷★ = return_1230 %_1241;
+            -> λ@(0∷i1) %_1242;
+        }
+            
+            return_1230: cn [:mem, i32] = {
+                %return_1232: cn [:mem, i32] = .extract %_1231, 1∷i1;
+                %_1233: [:mem, i32] = .var return_1230;
+                %return_1234: ⊥∷★ = %return_1232 %_1233;
+                -> λ@(0∷i1) %return_1234;
+            }
+

@@ -1,0 +1,60 @@
+        barf_707: cn [:mem, r32, cn [:mem, r32]] = {
+            %_720: [:mem, r32, cn [:mem, r32]] = .var barf_707;
+            %return_734: cn [:mem, r32] = .extract %_720, 2∷i₃;
+            %mem_721: :mem = .extract %_720, 0∷i₃;
+            %a_727: r32 = .extract %_720, 1∷i₃;
+            %_753: «2∷nat; r32» = (1∷r32, %a_727);
+            %_754: r32 = :ROp_add (0∷nat, 32∷nat) %_753;
+            %_757: [:mem, r32] = (%mem_721, %_754);
+            %_758: ⊥∷★ = %return_734 %_757;
+            -> λ@(0∷i1) %_758;
+        }
+
+        main_719: cn [:mem, cn [:mem, i32]] = {
+            %_776: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = :rev_diff ‹2∷nat; r32› barf_707;
+            %_759: [:mem, cn [:mem, i32]] = .var main_719;
+            %mem_760: :mem = .extract %_759, 0∷i1;
+            %_792: [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = (%mem_760, 3∷r32, _cont_789);
+        // call rev_diff barf with (mem, 3, cont)
+            %_cont_793: ⊥∷★ = %_776 %_792;
+            -> λ@(0∷i1) %_cont_793;
+        }
+            
+            // result (r) and lin map as argument
+            _cont_789: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = {
+                %_790: [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = .var _cont_789;
+            get linear map
+                %_795: cn [:mem, r32, cn [:mem, r32]] = .extract %_790, 2∷i₃;
+                %mem_791: :mem = .extract %_790, 0∷i₃;
+            arguments to call linear map (x prime)
+                %_838: [:mem, r32, cn [:mem, r32]] = (%mem_791, 5∷r32, _cont_835);
+                %_cont_839: ⊥∷★ = %_795 %_838;
+                -> λ@(0∷i1) %_cont_839;
+            }
+                
+            receive result of linear map => r32 = gradient (q)
+                _cont_835: cn [:mem, r32] = {
+                return of main
+                    %return_765: cn [:mem, i32] = .extract %_759, 1∷i1;
+                    %_836: [:mem, r32] = .var _cont_835;
+                    %mem_837: :mem = .extract %_836, 0∷i1;
+                extract result (r)
+                    %_794: r32 = .extract %_790, 1∷i₃;
+                    %_825: i32 = :Conv_r2s (4294967296∷nat, 32∷nat) %_794;
+                result of linear map (q)
+                    %_840: r32 = .extract %_836, 1∷i1;
+                    %_844: i32 = :Conv_r2s (4294967296∷nat, 32∷nat) %_840;
+                mult (r,q)
+                    %_861: «2∷nat; i32» = (%_825, %_844);
+                    %_862: i32 = :Wrap_mul (1∷nat, 4294967296∷nat) %_861;
+                42+ ...
+                    %_864: «2∷nat; i32» = (42∷i32, %_862);
+                    %_865: i32 = :Wrap_add (1∷nat, 4294967296∷nat) %_864;
+                    %_868: [:mem, i32] = (%mem_837, %_865);
+                return 
+                    %_869: ⊥∷★ = %return_765 %_868;
+                    -> λ@(0∷i1) %_869;
+                }
+
+
+
