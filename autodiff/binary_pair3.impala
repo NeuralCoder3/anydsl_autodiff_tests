@@ -1,6 +1,5 @@
 fn f(x: [f32 * 2]) -> f32 {
-    let z1 = x(1) - x(0);
-    z1*z1
+    x(1) - x(0)
 }
 fn main() -> i32 {
     let Df = rev_diff(f);

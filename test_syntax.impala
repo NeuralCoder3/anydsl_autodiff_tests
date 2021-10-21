@@ -8,9 +8,9 @@ fn g(x0:f32,x1:f32) -> f32 {
 
 fn main() -> i32 {
     let p = (2,3);
-    let q = [2,3];
-    let p2 = (2f,3f);
-    let q2 = [2f,3f];
+    let q = [4,5];
+    let p2 = (6f,7f);
+    let q2 = [8f,9f];
     let s = f(q2)+g(1f,2f);//+f(p2);
    42+p(0)+q(0)
 }
