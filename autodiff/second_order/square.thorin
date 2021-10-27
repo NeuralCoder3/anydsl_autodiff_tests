@@ -1,0 +1,49 @@
+module 'square
+        
+        sq_709: cn [:mem, r32, cn [:mem, r32]] = {
+            %_756: «2∷nat; r32» = ‹2∷nat; @{sq_709, 1∷i₃}›;
+            %_757: r32 = (:ROp_mul (0∷nat, 32∷nat)) %_756;
+            %_761: ⊥∷★ = RET@{sq_709} (MEM@{sq_709}, %_757);
+            -> λ@(0∷i1) %_761;
+        }
+        
+        f_715: cn [:mem, r32, cn [:mem, r32]] = {
+            %_784: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = (:rev_diff ‹2∷nat; r32›) sq_709;
+            %_cont_796: ⊥∷★ = %_784 (MEM@{f_715}, @{f_715, 1∷i₃}, _cont_792);
+            -> λ@(0∷i1) %_cont_796;
+        }
+            
+            _cont_828: cn [:mem, r32] = {
+                %_844: «2∷nat; r32» = ‹2∷nat; @{f_715, 1∷i₃}›;
+                %_845: r32 = (:ROp_mul (0∷nat, 32∷nat)) %_844;
+                %_848: r32 = (:ROp_mul (0∷nat, 32∷nat)) (@{f_715, 1∷i₃}, %_845);
+                %_852: r32 = (:ROp_add (0∷nat, 32∷nat)) (@{_cont_828, 1∷i1}, %_848);
+                %_856: ⊥∷★ = RET@{f_715} (MEM@{_cont_828}, %_852);
+                -> λ@(0∷i1) %_856;
+            }
+            
+            _cont_792: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = {
+                %_cont_832: ⊥∷★ = RET@{_cont_792} (MEM@{_cont_792}, 1∷r32, _cont_828);
+                -> λ@(0∷i1) %_cont_832;
+            }
+        
+        main_728: cn [:mem, cn [:mem, i32]] = {
+            %_864: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = (:rev_diff ‹2∷nat; r32›) f_715;
+            %_cont_878: ⊥∷★ = %_864 (MEM@{main_728}, 4∷r32, _cont_874);
+            -> λ@(0∷i1) %_cont_878;
+        }
+            
+            _cont_874: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = {
+                %_cont_917: ⊥∷★ = RET@{_cont_874} (MEM@{_cont_874}, 1∷r32, _cont_913);
+                -> λ@(0∷i1) %_cont_917;
+            }
+                
+                _cont_913: cn [:mem, r32] = {
+                    %_922: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_913, 1∷i1};
+                    %_904: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_874, 1∷i₃};
+                    %_940: i32 = (:Wrap_mul (1∷nat, 4294967296∷nat)) (1000∷i32, %_904);
+                    %_944: i32 = (:Wrap_add (1∷nat, 4294967296∷nat)) (%_922, %_940);
+                    %_948: ⊥∷★ = RET@{main_728} (MEM@{_cont_913}, %_944);
+                    -> λ@(0∷i1) %_948;
+                }
+

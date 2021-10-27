@@ -1,0 +1,46 @@
+        cc_pct_1959: ★ = {
+            -> [@{cc_pct_1959}, cn [@{cc_pct_1959}, :mem, r32]];
+        }
+        
+        cc_pct_1957: ★ = {
+            -> [@{cc_pct_1957}, cn [@{cc_pct_1957}, :mem, r32, cc_pct_1959]];
+        }
+            
+            _cont_2005: cn [cc_pct_1969, :mem, r32, cc_pct_1957] = {
+                %cc_app_f_2010: cn [@{cc_pct_1957}, :mem, r32, cc_pct_1959] = #{1∷i1} @{_cont_2005, 3∷i2};
+                %cc_app_env_3: @{cc_pct_1957} = #{0∷i1} @{_cont_2005, 3∷i2};
+                %_2065: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_2005, 2∷i2};
+                %_2069: i32 = (:Wrap_mul (1∷nat, 4294967296∷nat)) (1000∷i32, %_2065);
+                %_2099: ⊥∷★ = %cc_app_f_2010 (%cc_app_env_3, @{_cont_2005, 1∷i2}, 1∷r32, ((@{_cont_2005, 0∷i2}, %_2069), _cont_2073)∷cc_pct_1959);
+                -> λ@(0∷i1) %_2099;
+            }
+        
+        cc_pct_1955: ★ = {
+            -> [@{cc_pct_1955}, cn [@{cc_pct_1955}, :mem, r32, cc_pct_1957]];
+        }
+        
+        cc_pct_1951: ★ = {
+            -> [@{cc_pct_1951}, cn [@{cc_pct_1951}, :mem, r32, cc_pct_1955]];
+        }
+            
+            main_1979: cn [cc_pct_1951, :mem, cc_pct_1969] = {
+                %cc_app_f_1984: cn [@{cc_pct_1951}, :mem, r32, cc_pct_1955] = #{1∷i1} @{main_1979, 0∷i₃};
+                %cc_app_env_2: @{cc_pct_1951} = #{0∷i1} @{main_1979, 0∷i₃};
+                %_2102: ⊥∷★ = %cc_app_f_1984 (%cc_app_env_2, @{main_1979, 1∷i₃}, 4∷r32, (@{main_1979, 2∷i₃}, _cont_2005)∷cc_pct_1955);
+                -> λ@(0∷i1) %_2102;
+            }
+        
+        cc_pct_1969: ★ = {
+            -> [@{cc_pct_1969}, cn [@{cc_pct_1969}, :mem, i32]];
+        }
+            
+            _cont_2073: cn [[cc_pct_1969, i32], :mem, r32] = {
+                %cc_fv_2078: cc_pct_1969 = #{0∷i1} @{_cont_2073, 0∷i₃};
+                %cc_app_f_2079: cn [@{cc_pct_1969}, :mem, i32] = #{1∷i1} %cc_fv_2078;
+                %cc_app_env_4: @{cc_pct_1969} = #{0∷i1} %cc_fv_2078;
+                %cc_fv_2086: i32 = #{1∷i1} @{_cont_2073, 0∷i₃};
+                %_2092: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_2073, 2∷i₃};
+                %_2094: i32 = (:Wrap_add (1∷nat, 4294967296∷nat)) (%cc_fv_2086, %_2092);
+                %_2096: ⊥∷★ = %cc_app_f_2079 (%cc_app_env_4, @{_cont_2073, 1∷i₃}, %_2094);
+                -> λ@(0∷i1) %_2096;
+            }

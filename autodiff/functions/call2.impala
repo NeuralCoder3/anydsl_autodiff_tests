@@ -1,0 +1,17 @@
+fn sq(a: f32) -> f32 {
+    a*a
+}
+fn f(a: f32) -> f32 {
+    sq(a*a)
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df(3f);
+    let y  = yp(0);
+    let yP = yp(1);
+    let r = y as i32;
+    let q = yP(1f) as i32;
+    1000 * r + q
+    // x⁴, 4x³
+    // 81, 108
+}

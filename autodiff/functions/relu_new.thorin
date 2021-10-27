@@ -1,0 +1,43 @@
+module 'relu
+        
+        f_707: cn [:mem, r32, cn [:mem, r32]] = {
+            %_772: i1 = (:RCmp_le (0∷nat, 32∷nat)) (@{f_707, 1∷i₃}, 0∷r32);
+            %_777: cn :mem = #{%_772} (if_else_746, if_then_741);
+            %_778: ⊥∷★ = %_777 MEM@{f_707};
+            -> λ@(0∷i1) %_778;
+        }
+            
+            if_join_751: cn [:mem, r32] = {
+                %_793: ⊥∷★ = RET@{f_707} @{if_join_751};
+                -> λ@(0∷i1) %_793;
+            }
+            
+            if_else_746: cn :mem = {
+                %_789: ⊥∷★ = if_join_751 (@{if_else_746}, @{f_707, 1∷i₃});
+                -> λ@(0∷i1) %_789;
+            }
+            
+            if_then_741: cn :mem = {
+                %_786: ⊥∷★ = if_join_751 (@{if_then_741}, 0∷r32);
+                -> λ@(0∷i1) %_786;
+            }
+        
+        main_720: cn [:mem, cn [:mem, i32]] = {
+            %_811: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = (:rev_diff ‹2∷nat; r32›) f_707;
+            %_cont_828: ⊥∷★ = %_811 (MEM@{main_720}, 4∷r32, _cont_824);
+            -> λ@(0∷i1) %_cont_828;
+        }
+            
+            _cont_824: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = {
+                %_cont_874: ⊥∷★ = RET@{_cont_824} (MEM@{_cont_824}, 1∷r32, _cont_870);
+                -> λ@(0∷i1) %_cont_874;
+            }
+                
+                _cont_870: cn [:mem, r32] = {
+                    %_879: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_870, 1∷i1};
+                    %_860: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_824, 1∷i₃};
+                    %_897: i32 = (:Wrap_mul (1∷nat, 4294967296∷nat)) (1000∷i32, %_860);
+                    %_901: i32 = (:Wrap_add (1∷nat, 4294967296∷nat)) (%_879, %_897);
+                    %_905: ⊥∷★ = RET@{main_720} (MEM@{_cont_870}, %_901);
+                    -> λ@(0∷i1) %_905;
+                }

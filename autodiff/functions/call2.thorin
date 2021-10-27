@@ -1,0 +1,67 @@
+module 'call2
+        
+        sq_709: cn [:mem, r32, cn [:mem, r32]] = {
+            %_729: [:mem, r32, cn [:mem, r32]] = .var sq_709;
+            %return_742: cn [:mem, r32] = .extract %_729, 2∷i₃;
+            %mem_730: :mem = .extract %_729, 0∷i₃;
+            %a_735: r32 = .extract %_729, 1∷i₃;
+            %_756: «2∷nat; r32» = ‹2∷nat; %a_735›;
+            %_757: r32 = :ROp_mul (0∷nat, 32∷nat) %_756;
+            %_760: [:mem, r32] = (%mem_730, %_757);
+            %_761: ⊥∷★ = %return_742 %_760;
+            -> λ@(0∷i1) %_761;
+        }
+        
+        f_715: cn [:mem, r32, cn [:mem, r32]] = {
+            %_762: [:mem, r32, cn [:mem, r32]] = .var f_715;
+            %mem_763: :mem = .extract %_762, 0∷i₃;
+            %a_768: r32 = .extract %_762, 1∷i₃;
+            %_778: «2∷nat; r32» = ‹2∷nat; %a_768›;
+            %_779: r32 = :ROp_mul (0∷nat, 32∷nat) %_778;
+            %_789: [:mem, r32, cn [:mem, r32]] = (%mem_763, %_779, sq_cont_786);
+            %sq_cont_790: ⊥∷★ = sq_709 %_789;
+            -> λ@(0∷i1) %sq_cont_790;
+        }
+            
+            sq_cont_786: cn [:mem, r32] = {
+                %return_773: cn [:mem, r32] = .extract %_762, 2∷i₃;
+                %_787: [:mem, r32] = .var sq_cont_786;
+                %_794: ⊥∷★ = %return_773 %_787;
+                -> λ@(0∷i1) %_794;
+            }
+        
+        main_728: cn [:mem, cn [:mem, i32]] = {
+            %_812: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = :rev_diff ‹2∷nat; r32› f_715;
+            %_795: [:mem, cn [:mem, i32]] = .var main_728;
+            %mem_796: :mem = .extract %_795, 0∷i1;
+            %_828: [:mem, r32, cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]]] = (%mem_796, 4∷r32, _cont_825);
+            %_cont_829: ⊥∷★ = %_812 %_828;
+            -> λ@(0∷i1) %_cont_829;
+        }
+            
+            _cont_825: cn [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = {
+                %_826: [:mem, r32, cn [:mem, r32, cn [:mem, r32]]] = .var _cont_825;
+                %_831: cn [:mem, r32, cn [:mem, r32]] = .extract %_826, 2∷i₃;
+                %mem_827: :mem = .extract %_826, 0∷i₃;
+                %_874: [:mem, r32, cn [:mem, r32]] = (%mem_827, 1∷r32, _cont_871);
+                %_cont_875: ⊥∷★ = %_831 %_874;
+                -> λ@(0∷i1) %_cont_875;
+            }
+                
+                _cont_871: cn [:mem, r32] = {
+                    %return_801: cn [:mem, i32] = .extract %_795, 1∷i1;
+                    %_872: [:mem, r32] = .var _cont_871;
+                    %mem_873: :mem = .extract %_872, 0∷i1;
+                    %_876: r32 = .extract %_872, 1∷i1;
+                    %_880: i32 = :Conv_r2s (4294967296∷nat, 32∷nat) %_876;
+                    %_830: r32 = .extract %_826, 1∷i₃;
+                    %_861: i32 = :Conv_r2s (4294967296∷nat, 32∷nat) %_830;
+                    %_897: «2∷nat; i32» = (1000∷i32, %_861);
+                    %_898: i32 = :Wrap_mul (1∷nat, 4294967296∷nat) %_897;
+                    %_901: «2∷nat; i32» = (%_880, %_898);
+                    %_902: i32 = :Wrap_add (1∷nat, 4294967296∷nat) %_901;
+                    %_905: [:mem, i32] = (%mem_873, %_902);
+                    %_906: ⊥∷★ = %return_801 %_905;
+                    -> λ@(0∷i1) %_906;
+                }
+
