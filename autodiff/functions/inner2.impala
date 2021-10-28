@@ -1,0 +1,16 @@
+fn g(x:[f32 * 2]) -> f32 {
+    x(0) + 2f * x(1)
+}
+fn f(x:f32) -> f32 {
+    g ([x, 42f])
+}
+
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df(4f); // <x² (3); \a -> a* (2x (3))>
+    let y  = yp(0);
+    let yP = yp(1);
+    let r = y as i32;
+    let q = yP(1f) as i32; // 2*x
+    1000 * r + q
+}
