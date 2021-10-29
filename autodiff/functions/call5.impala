@@ -4,7 +4,7 @@ fn  @(false) sq(a: f32) -> f32 {
 }
 fn f(a: f32) -> f32 {
     let mut g = sq;
-    a*g(a)
+    a+g(a)
 }
 fn main() -> i32 {
     let Df = rev_diff(f);

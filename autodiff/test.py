@@ -53,7 +53,7 @@ for root, dirs, files in os.walk("."):
             p=subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
             out=""
             for l in p.stdout:
-                out+=l.decode("utf-8")+"\n"
+                out+=l.decode("utf-8")
             outc,errc=p.communicate()
             if p.returncode == 0:
                 log("👍"+filename+" "+suffix+": okay")

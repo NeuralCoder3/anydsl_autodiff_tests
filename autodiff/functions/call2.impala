@@ -2,7 +2,7 @@ fn sq(a: f32) -> f32 {
     a*a
 }
 fn f(a: f32) -> f32 {
-    sq(a*a)
+    sq(a+a)
 }
 fn main() -> i32 {
     let Df = rev_diff(f);
