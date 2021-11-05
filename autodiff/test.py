@@ -36,7 +36,7 @@ for root, dirs, files in os.walk("."):
         pass
 
     for f in files:
-        if not f.endswith(".impala"):
+        if not f.endswith(".impala") or "disabled" in f:
             continue
         filestump=f.split(".")[0]
         filename=root+"/"+f
