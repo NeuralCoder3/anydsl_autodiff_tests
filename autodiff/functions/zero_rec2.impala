@@ -1,6 +1,6 @@
 fn f(a: f32) -> f32 {
     if a <= 0f {
-        42f
+        a
     }
     else {
         f(a-1f)
