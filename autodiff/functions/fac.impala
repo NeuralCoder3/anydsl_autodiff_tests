@@ -1,17 +1,28 @@
 fn f(a: f32) -> f32 {
     if a <= 0f {
-        0f
+        1f
+        // df : 0f
     }
     else {
         a*f(a-1f)
+        // df : f(a-1) + a df(a-1)
     }
 }
 fn main() -> i32 {
     let Df = rev_diff(f);
-    let yp = Df(4f);
+    let yp = Df(3f);
     let y  = yp(0);
     let yP = yp(1);
     let r = y as i32;
     let q = yP(1f) as i32;
     1000 * r + q
+    // a*((a-1)*(a-2)*1)         = 6
+    // (a-1)(a-2)+a((a-2)+(a-1)) = 8
+    // 
+    // from wolfram alpha:
+    //   11-6γ (euler mascheroni constant) ≈ 
+    //   11-6*0.577 ≈ 7.537
+
+
+    // Problem: the code returns 11
 }
