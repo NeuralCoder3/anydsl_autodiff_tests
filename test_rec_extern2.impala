@@ -1,0 +1,20 @@
+extern "C" {
+    fn g() -> f32;
+}
+
+fn @(true) f(x: [f32 * 2]) -> f32 {
+    let a = x(0);
+    let b = x(1);
+    if(b<=0f) {
+        1f
+    }else {
+        a*f([a,b-1f])
+    }
+}
+
+// infinite loop at beta reduction stage
+fn main() -> i32 {
+    let x = [4f,g()];
+    let y = f(x) as i32;
+   10000+y
+}
