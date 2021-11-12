@@ -17,12 +17,26 @@ fn main() -> i32 {
     let q = yP(1f) as i32;
     1000 * r + q
     // a*((a-1)*(a-2)*1)         = 6
-    // (a-1)(a-2)+a((a-2)+(a-1)) = 8
     // 
-    // from wolfram alpha:
+    // df(a) = f(a-1) + df(a-1) * a
+    //   df(a-1) = f(a-2) + df(a-2) * (a-1)
+    //     df(a-2) = f(a-3) + df(a-3) * (a-2)
+    //             =      1 +       0 *     1
+    //             = 1
+    //           =      1 +       1 *     2
+    //           = 3
+    //       =      2 +       3 * 3
+    //       = 11 
+    //
+    // 6,11
+    // 3!=a(a-1)(a-2)1=a³-3a²+2a
+    // d/da = 3a²-6a+2
+    // 
+    // from wolfram alpha (for the continuous faculty formula):
+    //   a! = Γ(a+1)
+    //   with d/da a! = Γ(a+1)ψ⁽⁰⁾(a+1)
+    //
     //   11-6γ (euler mascheroni constant) ≈ 
     //   11-6*0.577 ≈ 7.537
 
-
-    // Problem: the code returns 11
 }
