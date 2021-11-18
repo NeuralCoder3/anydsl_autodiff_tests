@@ -12,4 +12,6 @@ fn main() -> i32 {
     let r = y as i32;
     let q = yP as i32;
     1000 * r + q
+    // (x-2)², 2(x-2)
+    // 9, 6
 }
