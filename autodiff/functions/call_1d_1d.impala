@@ -1,8 +1,8 @@
-fn p3(a: f32) -> f32 {
-    a*a*a
+fn sq(a: f32) -> f32 {
+    a*a
 }
 fn f(a: f32) -> f32 {
-    a+p3(a*a)
+    a+sq(3f*a)
 }
 fn main() -> i32 {
     let Df = rev_diff(f);
@@ -12,9 +12,6 @@ fn main() -> i32 {
     let r = y as i32;
     let q = yP(1f) as i32;
     100000 * r + q
-    // x+(x²)³
-    // 1+2x*3(x²)² = 1+6x⁵
-    // 66,193
-
-    // wrong results 66, 49 => 3*4² => ignore argument pb of p3 => use only id pb
+    // x+(3f*x)²=x+9x², 1+18x
+    // 38,37
 }

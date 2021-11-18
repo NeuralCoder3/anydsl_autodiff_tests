@@ -1,0 +1,24 @@
+fn g(a: [f32*2]) -> f32 {
+    a(0)*a(1)
+}
+fn f(x: [f32*2]) -> f32 {
+    let x1 = x(0);
+    let x2 = x(1);
+    x1+g([3f*x2,x1+2f])
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df([3f,2f]);
+    let y  = yp(0);
+    let yP = yp(1);
+    let yPP = yP(1f);
+    let r = y as i32;
+    let q1 = yPP(0) as i32;
+    let q2 = yPP(1) as i32;
+    100000 * r + 100*q1 + q2
+    // x1+(3*x2)*(x1+2f)
+    // 1+3*x2
+    // 3*x1+6
+
+    // 33, 7, 15
+}
