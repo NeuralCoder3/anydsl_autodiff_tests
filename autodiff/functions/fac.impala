@@ -31,6 +31,9 @@ fn main() -> i32 {
     // 6,11
     // 3!=a(a-1)(a-2)1=a³-3a²+2a
     // d/da = 3a²-6a+2
+    //
+    // sum_{i=0}^{a-1} a!/(a-i)! * f(a-1-i)
+    // = a!*H_a = a!*(γ+ψ(a+1))
     // 
     // from wolfram alpha (for the continuous faculty formula):
     //   a! = Γ(a+1)
@@ -39,4 +42,5 @@ fn main() -> i32 {
     //   11-6γ (euler mascheroni constant) ≈ 
     //   11-6*0.577 ≈ 7.537
 
+    // 4 => 24,50
 }

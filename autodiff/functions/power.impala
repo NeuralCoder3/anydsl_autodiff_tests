@@ -19,6 +19,35 @@ fn main() -> i32 {
     let q1 = yP(1) as i32;
     10000 * r + 100*q0 + q1
     // x^y
-    // 2^5, 5*2^4, ?
+    // 2^5, 5*2^4, 0 (piecewise constant in b)
     // 32, 80, 0
+}
+
+
+
+
+
+extern "C" {
+    fn g() -> f32;
+}
+
+// true for computation
+// false to see individual numbers
+fn @(false) round(x:f32) -> i32 {
+    (x+0.5f) as i32
+}
+
+fn main2() -> i32 {
+    let Df = rev_diff(f);
+    let x = [g(),2f];
+    let yp = Df(x);
+    let y  = yp(0);
+    let yP = yp(1)(1f);
+    let r = round(y);
+    let q0 = round(yP(0));
+    let q1 = round(yP(1));
+    10000 * r + 100*q0 + q1
+    //a^2=exp(2*ln(a))
+    //2*a
+    //0
 }
