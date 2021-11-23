@@ -1,0 +1,31 @@
+extern "C" {
+    fn g() -> f32;
+}
+
+// true for computation
+// false to see individual numbers
+fn @(false) round(x:f32) -> i32 {
+    (x+0.5f) as i32
+}
+
+
+
+// @(true) is necessary
+fn @(true) fib(x: f32) -> f32 {
+    if(x<=2f) {
+        1f
+    }else {
+        fib(x-1f)+fib(x-2f)
+    }
+}
+fn main() -> i32 {
+    let Df = rev_diff(fib);
+    let x = 8f;
+    let yp = Df(x);
+    let y  = yp(0);
+    let yP = yp(1)(1f);
+    let r = round(y);
+    let q = round(yP);
+    10000 * r + q
+    // fib(x), 0
+}

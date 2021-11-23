@@ -1,0 +1,8 @@
+extern "C" {
+    fn g() -> f32;
+}
+
+fn main() -> f32 {
+    let x = (2f,5);
+    x(0)
+}
