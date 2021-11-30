@@ -1,4 +1,4 @@
-extern fn f(x:f32) -> f32 {
+fn f(x:f32) -> f32 {
     fn g(z:f32) -> f32 {
         x + 2f * z
     }

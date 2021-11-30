@@ -1,0 +1,17 @@
+fn f(a: (f32,f32)) -> f32 {
+    a(0)*a(0)+a(1)
+}
+fn main() -> i32 {
+     let Df = rev_diff(f);
+     // let arg = (2f,3f);
+     let yp = Df(2f,3f);
+     let y  = yp(0); // result
+     let yP = yp(1); // pullback
+     let deriv = yP(1f); // derivative
+     let d1 = deriv(0); // derivative resp. a_1
+     let d2 = deriv(1); // derivative resp. a_2
+     let r = y as i32;
+     let q1 = d1 as i32;
+     let q2 = d2 as i32;
+    10000 * r + 100*q1 + q2
+}

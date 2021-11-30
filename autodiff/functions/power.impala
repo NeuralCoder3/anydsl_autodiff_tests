@@ -8,7 +8,7 @@ fn @(true) f(x: [f32 * 2]) -> f32 {
         a*f([a,b-1f])
     }
 }
-fn main() -> i32 {
+fn main2() -> i32 {
     let Df = rev_diff(f);
     let x = [2f,5f];
     let yp = Df(x);
@@ -37,7 +37,7 @@ fn @(false) round(x:f32) -> i32 {
     (x+0.5f) as i32
 }
 
-fn main2() -> i32 {
+fn main() -> i32 {
     let Df = rev_diff(f);
     let x = [g(),2f];
     let yp = Df(x);

@@ -1,0 +1,20 @@
+fn f(x: [f32*2]) -> &mut f32 {
+    let y = 2f*x;
+    y
+}
+fn main() -> i32 {
+    // let Df = rev_diff(f);
+    // let x = [2f,3f];
+    // let yp = Df(x);
+    // let y  = yp(0);
+    // let yP = yp(1);
+    // let r = 42 as i32; // or convert y again
+    // let xp = 1f;
+    // let ypp = yP(xp); // converted to &xp
+    // let q1 = ypp(0) as i32;
+    // let q2 = ypp(1) as i32;
+    // 10000 * r + 100* q1 + q2
+
+    // let _ = f([2f,3f]);
+    42
+}
