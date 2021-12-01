@@ -1,6 +1,7 @@
-fn f(x: [f32*2]) -> &mut f32 {
-    let y = 2f*x;
-    y
+extern fn f(x: [f32*2]) -> &mut f32 {
+    let mut y;
+    y = 2f*x(0);
+    &mut y
 }
 fn main() -> i32 {
     // let Df = rev_diff(f);
