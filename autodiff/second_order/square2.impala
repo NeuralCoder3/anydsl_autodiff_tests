@@ -1,4 +1,4 @@
-fn sq(a: f32) -> f32 {
+ fn sq(a: f32) -> f32 {
     a * a
 }
 

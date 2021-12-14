@@ -1,5 +1,5 @@
 fn f(a: f32) -> f32 {
-    a * a
+    42f * a
 }
 fn main() -> i32 {
     let Df = rev_diff(f);

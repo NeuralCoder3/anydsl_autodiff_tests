@@ -1,9 +1,10 @@
-fn f(a: (f32,f32)) -> f32 {
+fn f(x: [(f32,f32) * 2]) -> f32 {
+    let a = x(0);
     a(0)*a(0)+a(1)
 }
 fn main() -> i32 {
      let Df = rev_diff(f);
      // let arg = (2f,3f);
-     let yp = Df((2f,3f));
+     let yp = Df([(2f,3f),(2f,3f)]);
     42
 }
