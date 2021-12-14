@@ -27,6 +27,8 @@
 👍./simple/linear_example.impala optmized: okay
 👍./simple/square_extern.impala thorin: okay
 👍./simple/square_extern.impala optmized: okay
+👍./simple/const.impala thorin: okay
+👍./simple/const.impala optmized: okay
 👍./simple/linear_example_annotated.impala thorin: okay
 👍./simple/linear_example_annotated.impala optmized: okay
 👍./simple/div.impala thorin: okay
@@ -93,6 +95,8 @@
 👍./multidim/binary_pair5.impala optmized: okay
 👍./multidim/binary_pair1.impala thorin: okay
 👍./multidim/binary_pair1.impala optmized: okay
+👍./multidim/inner_tuple.impala thorin: okay
+👍./multidim/inner_tuple.impala optmized: okay
 👍./multidim/binary_pair3.impala thorin: okay
 👍./multidim/binary_pair3.impala optmized: okay
 👍./multidim/binary_pair1b.impala thorin: okay
@@ -103,6 +107,13 @@
     ../../impala/build/bin/impala -Othorin -emit-thorin ./multidim/tuple.impala
 👍./multidim/def_array.impala thorin: okay
 👍./multidim/def_array.impala optmized: okay
+💩./multidim/tuple2.impala thorin: error
+    ../../impala/build/bin/impala -emit-thorin ./multidim/tuple2.impala
+💩./multidim/tuple2.impala optmized: error
+    ../../impala/build/bin/impala -Othorin -emit-thorin ./multidim/tuple2.impala
+👍./multidim/tuple3.impala thorin: okay
+💩./multidim/tuple3.impala optmized: error
+    ../../impala/build/bin/impala -Othorin -emit-thorin ./multidim/tuple3.impala
 👍./multidim/binary_pair6.impala thorin: okay
 👍./multidim/binary_pair6.impala optmized: okay
 👍./multidim/mult_return.impala thorin: okay
