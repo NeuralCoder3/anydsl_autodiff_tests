@@ -1,17 +1,23 @@
 
 extern fn f(x: f32) -> f32 {
-    let mut p = 2f*x;
-    3f*p+x
+    let mut p;
+    p=x*x;
+    if(x<=3f) {
+        p=x*x*x;
+    }
+    p
 }
 
 
 fn main() -> i32 {
     let Df = rev_diff(f);
-    let yp = Df(4f);
+    let yp = Df(4f); // 2
     let y  = yp(0);
     let yP = yp(1);
     let r = y as i32;
     let q = yP(1f) as i32;
     1000 * r + q
-    // 7x
+    // 4 => 16,8
+    // 3 => 27,27
+    // 2 => 8,12
 }

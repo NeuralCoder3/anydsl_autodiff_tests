@@ -1,7 +1,9 @@
 
 extern fn f(x: f32) -> f32 {
     let mut p = 2f*x;
-    3f*p+x
+    let v = p;
+    p = 3f+x;
+    v
 }
 
 
@@ -13,5 +15,5 @@ fn main() -> i32 {
     let r = y as i32;
     let q = yP(1f) as i32;
     1000 * r + q
-    // 7x
+    // 2x
 }
