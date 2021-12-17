@@ -1,9 +1,14 @@
+287d671d15da06c49fee1dc07cb330db047cdd0e
 👍./test.impala thorin: okay
 👍./test.impala optmized: okay
 💩./multituple/ternary.impala thorin: error
     ../../impala/build/bin/impala -emit-thorin ./multituple/ternary.impala
 💩./multituple/ternary.impala optmized: error
     ../../impala/build/bin/impala -Othorin -emit-thorin ./multituple/ternary.impala
+💩./multituple/three_in_one.impala thorin: error
+    ../../impala/build/bin/impala -emit-thorin ./multituple/three_in_one.impala
+💩./multituple/three_in_one.impala optmized: error
+    ../../impala/build/bin/impala -Othorin -emit-thorin ./multituple/three_in_one.impala
 💩./multituple/binary.impala thorin: error
     ../../impala/build/bin/impala -emit-thorin ./multituple/binary.impala
 💩./multituple/binary.impala optmized: error
@@ -39,32 +44,54 @@
 👍./simple/linear_example copy.impala optmized: okay
 👍./simple/array.impala thorin: okay
 👍./simple/array.impala optmized: okay
+💩./mixedtype/floatptr_int.impala thorin: error
+    ../../impala/build/bin/impala -emit-thorin ./mixedtype/floatptr_int.impala
+💩./mixedtype/floatptr_int.impala optmized: error
+    ../../impala/build/bin/impala -Othorin -emit-thorin ./mixedtype/floatptr_int.impala
 💩./mixedtype/float_int.impala thorin: error
     ../../impala/build/bin/impala -emit-thorin ./mixedtype/float_int.impala
 💩./mixedtype/float_int.impala optmized: error
     ../../impala/build/bin/impala -Othorin -emit-thorin ./mixedtype/float_int.impala
 👍./mixedtype/unit.impala thorin: okay
 👍./mixedtype/unit.impala optmized: okay
+💩./mixedtype/float_int2.impala thorin: error
+    ../../impala/build/bin/impala -emit-thorin ./mixedtype/float_int2.impala
+💩./mixedtype/float_int2.impala optmized: error
+    ../../impala/build/bin/impala -Othorin -emit-thorin ./mixedtype/float_int2.impala
 👍./mutability/test_mut3.impala thorin: okay
 👍./mutability/test_mut3.impala optmized: okay
+👍./mutability/ptr_arg_store.impala thorin: okay
+👍./mutability/ptr_arg_store.impala optmized: okay
+👍./mutability/test_mut6.impala thorin: okay
+👍./mutability/test_mut6.impala optmized: okay
 👍./mutability/test_mut2.impala thorin: okay
 👍./mutability/test_mut2.impala optmized: okay
 👍./mutability/ptr2.impala thorin: okay
-💩./mutability/ptr2.impala optmized: error
-    ../../impala/build/bin/impala -Othorin -emit-thorin ./mutability/ptr2.impala
+👍./mutability/ptr2.impala optmized: okay
 👍./mutability/mut.impala thorin: okay
 👍./mutability/mut.impala optmized: okay
 👍./mutability/ptr.impala thorin: okay
-💩./mutability/ptr.impala optmized: error
-    ../../impala/build/bin/impala -Othorin -emit-thorin ./mutability/ptr.impala
+👍./mutability/ptr.impala optmized: okay
+👍./mutability/mut_cond_then.impala thorin: okay
+👍./mutability/mut_cond_then.impala optmized: okay
 👍./mutability/test_mut5.impala thorin: okay
 👍./mutability/test_mut5.impala optmized: okay
+💩./mutability/ptr_cpy.impala thorin: error
+    ../../impala/build/bin/impala -emit-thorin ./mutability/ptr_cpy.impala
+💩./mutability/ptr_cpy.impala optmized: error
+    ../../impala/build/bin/impala -Othorin -emit-thorin ./mutability/ptr_cpy.impala
+👍./mutability/ptr_arg_store_cond.impala thorin: okay
+👍./mutability/ptr_arg_store_cond.impala optmized: okay
 👍./mutability/test_mut4.impala thorin: okay
 👍./mutability/test_mut4.impala optmized: okay
+👍./mutability/test_mut7.impala thorin: okay
+👍./mutability/test_mut7.impala optmized: okay
 👍./mutability/test_mut.impala thorin: okay
 👍./mutability/test_mut.impala optmized: okay
 👍./mutability/mut2.impala thorin: okay
 👍./mutability/mut2.impala optmized: okay
+👍./mutability/ptr_cpy2.impala thorin: okay
+👍./mutability/ptr_cpy2.impala optmized: okay
 👍./second_order/square.impala thorin: okay
 💩./second_order/square.impala optmized: error
     ../../impala/build/bin/impala -Othorin -emit-thorin ./second_order/square.impala
