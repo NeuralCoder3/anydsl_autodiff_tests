@@ -1,4 +1,3 @@
-287d671d15da06c49fee1dc07cb330db047cdd0e
 👍./test.impala thorin: okay
 👍./test.impala optmized: okay
 💩./multituple/ternary.impala thorin: error
