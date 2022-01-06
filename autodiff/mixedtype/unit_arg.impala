@@ -1,0 +1,17 @@
+fn f(a: ()) -> f32 {
+    42f
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let u = ();
+    let yp = f(u);
+    42
+    // let yp = Df(u);
+    // let y  = yp(0);
+    // let yP = yp(1);
+    // let yd = yP(1f);
+    // let r = y as i32;
+    // let q = yd as i32;
+    // 1000 * r + q
+    // 42,0
+}
