@@ -1,0 +1,20 @@
+extern "C" {
+    fn pow(x:f32,y:f32) -> f32;
+    fn pow_arr(x:[f32*2]) -> f32;
+    fn pow_arr_diff(t:f32) -> [f32*2];
+    fn pow_arr_diff_complete(x:[f32*2]) -> (f32,fn(f32)->[f32*2]);
+}
+
+fn f(a: f32) -> f32 {
+    a * pow_arr([2f*a,2f])
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df(2f); 
+    let y  = yp(0);
+    let yP = yp(1);
+    let r = y as i32;
+    let q = yP(1f) as i32;
+    1000 * r + q
+    // x*(2x)² = 4x³, 12x²
+}

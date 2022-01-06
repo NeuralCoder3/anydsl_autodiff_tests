@@ -1,0 +1,12 @@
+extern "C" {
+    fn pow_arr(x:[f32*2]) -> f32;
+}
+
+fn f(a: f32) -> f32 {
+    a * pow_arr([2f*a,2f])
+}
+fn main() -> i32 {
+    let y = f(2f); 
+    let r = y as i32;
+    r
+}
