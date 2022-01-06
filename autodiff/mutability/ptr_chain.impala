@@ -1,0 +1,24 @@
+fn g(a: &mut f32) -> f32 {
+    (*a) * (*a)
+}
+
+fn f(a: &mut f32) -> f32 {
+    let v = g(a);
+    5f * (*a) + v*v
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let mut x = 3f;
+    let z : &mut f32 = &x;
+    let yp = Df(z); 
+    let y  = yp(0);
+    let yP = yp(1);
+    let r = y as i32;
+    let ypp :f32 = (yP(1f)); 
+    let q = ypp as i32;
+    1000 * r + q
+    // 5x+(x²)²
+    // x⁴+5x, 4x³+5
+    // 81+15, 4*27+5
+    // 96, 113
+}

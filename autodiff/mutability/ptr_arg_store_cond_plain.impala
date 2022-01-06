@@ -1,0 +1,30 @@
+fn f(a: &mut f32) -> f32 {
+    if((*a)<=3f) {
+        *a=(*a)*(*a)*(*a);
+    }else{
+        *a=(*a)*(*a);
+    }
+    *a
+}
+fn g(a: &mut f32) -> f32 {
+    let b = *a;
+    if((*a)<=3f) {
+        *a=b*b*b;
+    }else{
+        *a=b*b;
+    }
+    *a
+}
+fn main() -> i32 {
+    let mut x = 4f;
+    let z : &mut f32 = &x;
+    let q = f(z) as i32;
+    // let mut x2 = *z;
+    // let z2 : &mut f32 = &x2;
+    // let r = g(z2) as i32;
+    let r = 0;
+    1000*q+r
+    // 2 => x³ => 8
+    // 3 => x³ => 27
+    // 4 => x² => 16
+}

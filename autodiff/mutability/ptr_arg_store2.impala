@@ -1,23 +1,18 @@
 fn f(a: &mut f32) -> f32 {
-    if((*a)<=3f) {
-        *a=(*a)*(*a)*(*a);
-    }else{
-        *a=(*a)*(*a);
-    }
-    *a
+    (*a)=2f*(*a);
+    5f * (*a)
+    // converted to rvalue(*a,f32)
 }
 fn main() -> i32 {
     let Df = rev_diff(f);
     let mut x = 3f;
     let z : &mut f32 = &x;
-    let yp = Df(z);
+    let yp = Df(z); // converted to &x
     let y  = yp(0);
     let yP = yp(1);
     let r = y as i32;
     let ypp :f32 = (yP(1f)); // * for ptr pb
     let q = ypp as i32;
     1000 * r + q
-    // 2 => x³,3x² => 8, 12
-    // 3 => x³ => 27, 27
-    // 4 => x² => 16, 8
+    // 30,10
 }

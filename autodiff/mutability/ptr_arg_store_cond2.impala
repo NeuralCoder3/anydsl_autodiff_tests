@@ -1,14 +1,15 @@
 fn f(a: &mut f32) -> f32 {
+    let b = *a;
     if((*a)<=3f) {
-        *a=(*a)*(*a)*(*a);
+        *a=b*b*b;
     }else{
-        *a=(*a)*(*a);
+        *a=b*b;
     }
     *a
 }
 fn main() -> i32 {
     let Df = rev_diff(f);
-    let mut x = 3f;
+    let mut x = 4f;
     let z : &mut f32 = &x;
     let yp = Df(z);
     let y  = yp(0);
