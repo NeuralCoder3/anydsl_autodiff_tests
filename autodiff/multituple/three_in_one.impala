@@ -1,0 +1,17 @@
+fn f(x:(f32,(f32,f32))) -> f32 {
+    let x0 = x(0);
+    let x1 = x(1)(0);
+    let x2 = x(1)(1);
+    let z1 = x1 - x2;
+    z1*z1
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df((5f,(2f,1f)));
+    let y  = yp(0);
+    let yP = yp(1)(1f);
+    42
+    //let r = y as i32;
+    //let q = yP(1f) as i32;
+    //1000 * r + q
+}
