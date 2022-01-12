@@ -1,3 +1,9 @@
+// f_724: Cn [:mem, r32, Cn [:mem, r32]]: (%mem_739, %x_744, %return_751) = {
+//     %_811: i1 = :RCmp_le (0∷nat, 32∷nat) (%x_744, 3∷r32);
+//     %p_770: [:mem, :ptr (r32, 0∷nat)] = :slot (r32, 0∷nat) (%mem_739, 758∷nat);
+//     %_817: ⊥∷★ = (if_else_789, if_then_784)#%_811 %p_770#0∷i1;
+//     λ@(0∷i1) %_817
+// }
 
 extern fn f(x: f32) -> f32 {
     let mut p;
