@@ -1,0 +1,49 @@
+//    f_726: Cn [:mem, :ptr («3∷nat; r32», 0∷nat), Cn [:mem, r32]]: (%mem_741, %x_746, %return_753) = {
+//         %_792: :ptr (r32, 0∷nat) = :lea (3∷nat, ‹3∷nat; r32›, 0∷nat) (%x_746, 0∷i₃);
+//         %_798: [:mem, r32] = :load (r32, 0∷nat) (%mem_741, %_792);
+//         %_810: :ptr (r32, 0∷nat) = :lea (3∷nat, ‹3∷nat; r32›, 0∷nat) (%x_746, 1∷i₃);
+//         %_812: [:mem, r32] = :load (r32, 0∷nat) (%_798#0∷i1, %_810);
+//         %_824: :ptr (r32, 0∷nat) = :lea (3∷nat, ‹3∷nat; r32›, 0∷nat) (%x_746, 2∷i₃);
+//         %_826: [:mem, r32] = :load (r32, 0∷nat) (%_812#0∷i1, %_824);
+//         %_846: r32 = :ROp_mul (0∷nat, 32∷nat) (2∷r32, %_826#1∷i1);
+//         %_849: r32 = :ROp_add (0∷nat, 32∷nat) (%_798#1∷i1, %_846);
+//         %_855: r32 = :ROp_mul (0∷nat, 32∷nat) ‹2∷nat; %_849›;
+//         %_859: ⊥∷★ = %return_753 (%_826#0∷i1, %_855);
+//         λ@(0∷i1) %_859
+//     }
+extern fn f(x: &[f32*3]) -> f32 {
+    let x1 = (*x)(0);
+    let x2 = x(1);
+    let x3 = x(2);
+    let z1 = x1 + 2f* x3;
+    z1*z1
+}
+fn main() -> i32 {
+
+    let mut xP = [0f,..3];
+    let x = &mut xP;
+
+    (*x)(0)=1f;
+    x(1)=2f;
+    x(2)=3f;
+
+    // let y = f(x);
+    // let r = y as i32;
+    // r
+
+    let Df = rev_diff(f);
+    // let x = [3f,2f,4f];
+    let yp = Df(x);
+    let y  = yp(0);
+    let yP = yp(1)(1f);
+    // //42
+    let r = y as i32;
+    // let q0 = yP(0) as i32;
+    // let q1 = yP(1) as i32;
+    // let q2 = yP(2) as i32;
+    // 10000 * q0 + 100*q1 + q2
+    // // 2(x+2z), 0, 2(x+2z)*2
+    // // 220044
+
+    42
+}
