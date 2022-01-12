@@ -98,8 +98,7 @@
 👍./mutability/ptr_arg_store_cond2.impala thorin: okay
 👍./mutability/ptr_arg_store_cond2.impala optmized: okay
 👍./mutability/def2.impala thorin: okay
-💩./mutability/def2.impala optmized: error
-    ../../impala/build/bin/impala -Othorin -emit-thorin ./mutability/def2.impala
+👍./mutability/def2.impala optmized: okay
 👍./mutability/test_mut6.impala thorin: okay
 👍./mutability/test_mut6.impala optmized: okay
 👍./mutability/test_mut2.impala thorin: okay
