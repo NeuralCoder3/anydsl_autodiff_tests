@@ -13,4 +13,5 @@ fn main() -> i32 {
     let r = y as i32;
     let q = yP(1f) as i32;
     1000 * r + q
+    // 2x => 8,2
 }
