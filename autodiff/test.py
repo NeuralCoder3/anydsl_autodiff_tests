@@ -25,7 +25,7 @@ def log(s):
     print(s)
     logfile.write(s+"\n")
 
-for root, dirs, files in os.walk("."):
+for root, dirs, files in sorted(os.walk(".")):
     if "output" in root:
         continue
     # print(root,dirs,files)
