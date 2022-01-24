@@ -38,12 +38,13 @@ fn main() -> i32 {
     let yP = yp(1)(1f);
     // //42
     let r = y as i32;
-    // let q0 = yP(0) as i32;
-    // let q1 = yP(1) as i32;
-    // let q2 = yP(2) as i32;
-    // 10000 * q0 + 100*q1 + q2
+    let q0 = yP(0) as i32;
+    let q1 = yP(1) as i32;
+    let q2 = yP(2) as i32;
+    10000 * q0 + 100*q1 + q2
     // // 2(x+2z), 0, 2(x+2z)*2
+    //    14, 0, 28
     // // 220044
 
-    42
+    // 42
 }

@@ -1,4 +1,5 @@
 fn f(a: &mut f32) -> f32 {
+    // thorin bug
     if((*a)<=3f) {
         *a=(*a)*(*a)*(*a);
     }else{
@@ -14,7 +15,7 @@ fn main() -> i32 {
     let y  = yp(0);
     let yP = yp(1);
     let r = y as i32;
-    let ypp :f32 = *(yP(1f)); // * for ptr pb
+    let ypp :f32 = (yP(1f)); // * for ptr pb
     let q = ypp as i32;
     1000 * r + q
     // 2 => x³,3x² => 8, 12
