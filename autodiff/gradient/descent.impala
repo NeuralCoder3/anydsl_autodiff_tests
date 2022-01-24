@@ -1,0 +1,32 @@
+fn f(x: f32) -> f32 {
+    let xp = x-3f;
+    xp*xp*xp-x
+    // -3,2
+}
+
+fn main() -> 
+    // (f32,f32) 
+    f32
+    {
+    let mut x = 4f;
+    let mut yext = 0f;
+
+    let Df = rev_diff(f);
+
+    while(true) {
+        let (y,fp) = Df(x); 
+        let yp = fp(1f);
+        if(yp<0.1f) {
+            yext=y;
+            break;
+        } else {
+            x=x-yp;
+
+            yext=y;
+            break;
+        }
+    }
+    // (x,yext)
+    yext
+
+}

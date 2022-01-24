@@ -1,0 +1,36 @@
+fn f(x: f32) -> f32 {
+    let xp = x-3f;
+    xp*xp*xp-x
+    // -3,2
+}
+
+fn abs(x:f32) -> f32 {
+    if(x<0f) {
+        -x
+    } else {
+        x
+    }
+}
+
+fn findMin(x:f32) -> 
+    // (f32,f32) 
+    f32
+    {
+    let Df = rev_diff(f);
+    let (y,fp) = Df(x); 
+    let yp = fp(1f);
+    if(abs(yp)<0.01f) {
+        x
+        // (x,y)
+    } else {
+        findMin(x-0.01f*yp)
+        // (x-0.01f*yp)
+    }
+}
+
+fn main() -> 
+    // (f32,f32) 
+    i32
+    {
+    (findMin(2.5f)) as i32
+}
