@@ -1,0 +1,16 @@
+fn f(arg:&(f32,i32)) -> f32 {
+    let x = arg(0);
+    let y = arg(1);
+    x
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df((2f,5));
+    let y  = yp(0);
+    let yP = yp(1)(1f);
+    let r = y as i32;
+    let q0 = yP(0) as i32;
+    // let q1 = yP(1) as i32;
+    10000 * r + q0
+    //10000 * r + 100*q0 + q1
+}

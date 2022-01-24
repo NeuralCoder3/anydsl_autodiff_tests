@@ -1,4 +1,6 @@
 fn f(x: [(f32,i32,f32)*1]) -> f32 {
+    // bug? in projection
+    // Thorin shortens the array away
     let a = x(0)(0);
     let c = x(2)(2);
     3f*a+c*c
