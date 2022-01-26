@@ -1,0 +1,11 @@
+extern "C" {
+    fn g() -> i32;
+}
+
+fn main() -> i32 {
+    let p =((1f,2f),3f);
+    let x = p(0);
+    let y = p(1);
+    let z = p(g()); // needs literal index
+    42
+}

@@ -1,0 +1,15 @@
+
+extern fn f(x: f32) -> f32 {
+    let mut p;
+    if(x<=3f) {
+        p=x*x*x;
+    }else{
+        p=x*x;
+    }
+    p
+}
+
+
+fn main() -> i32 {
+    42
+}

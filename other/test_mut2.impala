@@ -1,0 +1,11 @@
+
+extern fn f(x: f32) -> f32 {
+    let mut p = 2f*x;
+    //3f*p+x
+    p
+}
+
+
+fn main() -> i32 {
+    42
+}

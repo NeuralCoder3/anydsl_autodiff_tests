@@ -1,0 +1,14 @@
+
+extern fn f(x: f32) -> f32 {
+    let mut p = 2f*x;
+    let v1 = p+2f;
+    let v2 = p+3f;
+    p = 3f*x;
+    let v3 = p+4f;
+    v1*v2+v3
+}
+
+
+fn main() -> i32 {
+    42
+}
