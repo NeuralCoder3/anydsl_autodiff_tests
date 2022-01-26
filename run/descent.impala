@@ -1,0 +1,57 @@
+extern "C" {
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn log(f64) -> (f64);
+    fn exp(f64) -> (f64);
+    fn logf(f32) -> (f32);
+    fn println(&[u8]) -> ();
+}
+
+fn f(x: f32) -> f32 {
+    let xp = x-3f;
+    xp*xp*xp-x
+    // -3,2
+}
+
+fn main() -> 
+    // (f32,f32) 
+    i32
+    {
+    let mut x = 4f;
+    let mut yext = 0f;
+
+    let Df = rev_diff(f);
+
+    println("Let's get started");
+            println("Start at ");
+            printFloat(x);
+    while(true) {
+        let (y,fp) = Df(x); 
+        let yp = fp(1f);
+        if(yp<0.1f) {
+            println("Found minima at ");
+            printFloat(x);
+
+            yext=y;
+            break()
+        } else {
+            x=x-0.1f*yp;
+            println("Change x to ");
+            printFloat(x);
+
+            yext=y
+            // break()
+        }
+    }
+    println("Exit with minima at");
+    printFloat(x);
+    println("value");
+    printFloat(yext);
+    // (x,yext)
+    0
+
+    // Minimum 4 => (3.58,-3.38)
+    // Maximum (2.42,-2.62)
+
+}

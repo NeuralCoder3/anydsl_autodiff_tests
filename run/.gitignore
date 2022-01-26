@@ -1,0 +1,8 @@
+*.ll
+*.log
+*.out
+*.thorin
+*.so
+*.o
+*.bs
+out/
