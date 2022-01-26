@@ -1,0 +1,42 @@
+fn @(true) f(x:f32) -> &f32 {
+    // let mut y=x;
+    // y
+    x
+}
+
+fn main() -> f32 {
+    // let v = *(f(3f));
+    // let v2= *(f(4f));
+    let p = f(3f);
+    let q = f(4f);
+    let v = *(p);
+    let v2= *(q);
+    v+v2
+}
+
+/*        
+f_721: Cn [:mem, r32, Cn [:mem, :ptr (r32, 0∷nat)]]: (%mem_734, %x_739, %return_746) = {
+    %_759: [:mem, :ptr (r32, 0∷nat)] = :slot (r32, 0∷nat) (%mem_734, 750∷nat);
+    %_767: :mem = :store (r32, 0∷nat) (%_759#0∷i1, %_759#1∷i1, %x_739);
+    %_771: ⊥∷★ = %return_746 (%_767, %_759#1∷i1);
+    λ@(0∷i1) %_771
+}
+
+main_732: Cn [:mem, Cn [:mem, r32]]: (%mem_773, %return_778) = {
+    %f_cont_793: ⊥∷★ = f_721 (%mem_773, 3∷r32, f_cont_789);
+    λ@(0∷i1) %f_cont_793
+}
+    
+    f_cont_789: Cn [:mem, :ptr (r32, 0∷nat)]: (%mem_791, %f_794) = {
+        %_802: [:mem, r32] = :load (r32, 0∷nat) @f_cont_789;
+        %f_cont_818: ⊥∷★ = f_721 (%_802#0∷i1, 4∷r32, f_cont_814);
+        λ@(0∷i1) %f_cont_818
+    }
+        
+        f_cont_814: Cn [:mem, :ptr (r32, 0∷nat)]: (%mem_816, %f_819) = {
+            %_824: [:mem, r32] = :load (r32, 0∷nat) @f_cont_814;
+            %_837: r32 = :ROp_add (0∷nat, 32∷nat) (%_802#1∷i1, %_824#1∷i1);
+            %_841: ⊥∷★ = %return_778 (%_824#0∷i1, %_837);
+            λ@(0∷i1) %_841
+        }
+*/
