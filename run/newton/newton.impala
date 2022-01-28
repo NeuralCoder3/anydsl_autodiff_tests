@@ -1,0 +1,141 @@
+extern "C" {
+    fn initImage(i32,i32) -> &();
+    fn setRGBPixel(&(),i32,i32,i32,i32,i32) -> ();
+    fn writeImage(&(),&[u8]) -> ();
+    fn close(&()) -> ();
+
+
+    fn println(&[u8]) -> ();
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+}
+
+fn range(mut b: i32, e: i32, body: fn(i32) -> ()) -> () {
+    while b < e {
+        body(b++)
+    }
+}
+
+fn @(true) complex_add(zt:[[f64*2]*2]) -> [f64*2] {
+    let a = zt(0)(0);
+    let b = zt(0)(1);
+    let c = zt(1)(0);
+    let d = zt(1)(1);
+    [a+c, b+d]
+}
+
+fn @(true) complex_sub(zt:[[f64*2]*2]) -> [f64*2] {
+    let a = zt(0)(0);
+    let b = zt(0)(1);
+    let c = zt(1)(0);
+    let d = zt(1)(1);
+    [a-c, b-d]
+}
+
+fn @(true) complex_mul(zt:[[f64*2]*2]) -> [f64*2] {
+    let a = zt(0)(0);
+    let b = zt(0)(1);
+    let c = zt(1)(0);
+    let d = zt(1)(1);
+    [a*c-b*d, a*d+b*c]
+}
+
+fn @(true) complex_div(zt:[[f64*2]*2]) -> [f64*2] {
+    let a = zt(0)(0);
+    let b = zt(0)(1);
+    let c = zt(1)(0);
+    let d = zt(1)(1);
+    let norm=c*c+d*d;
+    [
+        (a*c+b*d)/norm,
+        (b*c-a*d)/norm
+    ]
+}
+
+
+fn f(z:[f64*2]) -> [f64*2] {
+    // let a = z(0);
+    // let b = z(1);
+    // [
+        // z^3-1
+    //     a*a*a-3.0*a*b*b-1.0,
+    //     3.0*a*a*b-b*b*b
+        // z^4-1
+    //     a*a*a*a-6.0*a*a*b*b+b*b*b*b-1.0,
+    //     4.0*a*a*a*b-4.0*a*b*b*b
+    // ]
+    complex_sub([
+        complex_mul([z,
+        complex_mul([z,
+        complex_mul([z,
+        complex_mul([z,
+            z
+        ])
+        ])
+        ])
+        ]),
+        [1.0,0.0]
+    ])
+}
+
+fn @(true) newton(g:fn([f64*2])->[f64*2],mut z:[f64*2]) -> [f64*2] {
+    // f(z)
+    for i in range(0, 25) {
+        let Df=rev_diff(f);
+        // let za=[z(0),z(1)];
+        let Dfr=Df(z);
+        // let Df=rev_diff(f)(z);
+        let fz=Dfr(0);
+        let Dz=Dfr(1);
+        let da=Dz([1.0,0.0]);
+        let db=Dz([0.0,1.0]);
+        // let dz=da; // cool but wrong
+        // let dz=db;
+        // let dz=[da(0),db(1)];
+        // let dz=[da(0)+db(0),db(1)+da(1)];
+        // let dz=Dz([1.0,1.0]);
+        // let dz=Dz([0.5,0.5]);
+        let dz=[da(0),db(0)];
+        // let dz=[db(1),db(0)];
+
+        z=complex_sub( [
+            z,
+            complex_div([fz,dz])
+        ])
+    }
+    z
+}
+
+
+fn main() -> i32 {
+    let w = 512;
+    let h = 512;
+    println("Start");
+    let img = initImage(w,h);
+
+    println("Iter");
+    for y in range(0, h) {
+        let yc=2.0*(y as f64)/(h as f64)-1.0;
+        for x in range(0, w) {
+            let xc=2.0*(x as f64)/(w as f64)-1.0;
+
+            // let z = f([xc,yc]);
+            let z = newton(f,[xc,yc]);
+
+            let ix = (z(0)+1.0)/2.0;
+            let iy = (z(1)+1.0)/2.0;
+
+            setRGBPixel(img,x,y,
+                (255.0*ix) as i32, 
+                (255.0*iy) as i32, 
+                0);
+        }
+    }
+    println("Write");
+    writeImage(img,"newton.bmp");
+    println("Close");
+    close(img);
+
+    42
+}
