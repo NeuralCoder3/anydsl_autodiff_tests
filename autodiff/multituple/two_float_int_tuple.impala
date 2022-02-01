@@ -1,0 +1,27 @@
+fn f(args:(f32, i32)) -> f32 {
+    let x1 = args(0);
+    let x2 = args(1);
+    if(x2<10) {
+        2f*(x1*x1)
+    }else{
+        3f*(x1)
+    }
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df((3f,2));
+    let y  = yp(0);
+    let pb = yp(1);
+    let Gf = pb(1f);
+    let arg_grad = Gf(0);
+    let x_grad = arg_grad(0);
+    // 42
+    let r = y as i32;
+    let q = x_grad as i32;
+    1000 * r + q
+    // 2x², 4x
+    // 18, 12
+
+    // 3x, 3
+    // 9,3
+}
