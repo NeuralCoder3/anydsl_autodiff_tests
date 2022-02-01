@@ -4,3 +4,6 @@ output/
 tmp.txt
 
 *.ll
+*.s
+*.out
+*.bc
