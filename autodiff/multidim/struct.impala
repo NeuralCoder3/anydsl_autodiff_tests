@@ -1,0 +1,20 @@
+struct pair {
+    left: f32,
+    // middle: &f32,
+    right: f32,
+}
+
+fn f(a: pair) -> f32 {
+    a.left * a.right
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let yp = Df(pair{left:4f,right:3f}); 
+    let y  = yp(0);
+    let yP = yp(1);
+    let r = y as i32;
+    let yPP = yP(1f);
+    let q1 = yPP.left as i32; 
+    let q2 = yPP.right as i32; 
+    10000 * r + 100 * q1 + q2
+}

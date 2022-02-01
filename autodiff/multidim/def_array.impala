@@ -7,6 +7,7 @@ fn f(x: [f32 * 3]) -> f32 {
 }
 fn main() -> i32 {
     let Df = rev_diff(f);
+    // 42
     // let x = [3f,2f,4f];
     let x = [1f,2f,3f];
     let yp = Df(x);
