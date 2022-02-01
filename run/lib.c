@@ -2,7 +2,16 @@
 #include <stdbool.h>
 
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
+
+void initRandom() {
+    srand(time(NULL));   
+}
+
+float randomFloat(float a) {
+    return ((float)rand()/(float)(RAND_MAX)) * a;
+}
 
 // void main_impala(int);
 
@@ -17,10 +26,13 @@ void print_char(char c) {
    printf("%c\n", (int)c);
 }
 void print_int(int i) {
-   printf("%d\n", i);
+   printf("%d", i);
+}
+void print_f32(float f) {
+   printf("%.2f", f);
 }
 void print_f64(double d) {
-   printf("%.9f\n", d);
+   printf("%.9f", d);
 }
 
 void print_piece_mask(unsigned long long* a) {

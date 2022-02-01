@@ -1,0 +1,90 @@
+extern "C" {
+
+    fn println(&[u8]) -> ();
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+}
+
+fn range(mut b: i32, e: i32, body: fn(i32) -> ()) -> () {
+    while b < e {
+        body(b++)
+    }
+}
+
+fn network(args:[(
+    // input
+    [f32*2],
+    // output
+    f32,
+    // weights: in+1 -> out
+    [[f32*3]*2], 
+    [f32*3]
+)*2]) -> f32 {
+    let arg = args(0);
+    let inp = arg(0);
+    let out = arg(1);
+    let m1 = arg(2);
+    let m2 = arg(3);
+
+    let m1h1 = m1(0);
+    let h1 = m1h1(2)+m1h1(1)*inp(1)+m1h1(0)*inp(0);
+    let m1h2 = m1(1);
+    let h2 = m1h2(2)+m1h2(1)*inp(1)+m1h2(0)*inp(0);
+
+    let m2y = m2;
+    let y = m2y(2)+m2y(1)*h2+m2y(0)*h1;
+
+    out-y
+    // 0f
+}
+
+
+
+fn main() -> i32 {
+
+    let mut m1 = [[0f,..3],..2];
+    let mut m2 = [0f,..3];
+
+    let alpha=0.1f;
+
+    let in_out_pairs =
+        [
+            ([0f,0f],0f),
+            ([0f,1f],1f),
+            ([1f,0f],1f),
+            ([1f,1f],0f)
+        ]
+
+    while(true) {
+        println("another iteration");
+        let Df = rev_diff(network);
+        let inp=[0f,1f];
+        let out=1f; // expected
+        let x = (inp,out,m1,m2);
+        let (y,pb) = Df([x,x]); 
+        let Gf = pb(1f);
+        let arg_deriv=Gf(0);
+        let m1_deriv=arg_deriv(2);
+        let m2_deriv=arg_deriv(3);
+
+        printFloat(y);
+
+        for j in range(0,2) {
+            for i in range(0,3) {
+                m1(j)(i)=m1(j)(i)-alpha*m1_deriv(j)(i);
+            }
+        }
+
+        for i in range(0,3) {
+            m2(i)=m2(i)-alpha*m2_deriv(i);
+        }
+
+        if(y<0.1f) {
+            break()
+        }
+    }
+    println("Finished");
+
+    0
+}
