@@ -17,8 +17,8 @@ fn main() -> i32 {
     let y  = yp(0);
     let pb = yp(1);
     let Gf = pb(1f);
-    let arr_arg_grad = Gf(0);
-    let arg_grad = arr_arg_grad(0);
+    // let arr_arg_grad = Gf(0);
+    let arg_grad = Gf(0);
     let arr_grad = arg_grad(0);
 
     let x1_grad = arr_grad(0);

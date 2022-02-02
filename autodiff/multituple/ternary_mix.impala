@@ -1,0 +1,24 @@
+fn f(x: (f32, i32, f32)) -> f32 {
+    let x1=x(0);
+    let x2=x(1);
+    let x3=x(2);
+    3f*x1+4f*x3
+    // let z1 = x1 - x3;
+    // z1*z1
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let (y,pb) = Df((5f,2,2f));
+    let Gf  = pb(1f);
+    let arg_deriv = Gf(0);
+    // let arg_deriv = Gf;
+    let x1 = arg_deriv(0);
+    let x2 = arg_deriv(1);
+    let x3 = arg_deriv(2);
+    10000*(y  as i32)+
+    100  *(x1 as i32)+
+          (x3 as i32)
+    //let r = y as i32;
+    //let q = yP(1f) as i32;
+    //1000 * r + q
+}
