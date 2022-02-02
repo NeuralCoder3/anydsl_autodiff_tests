@@ -1,0 +1,31 @@
+fn f(args_arr:[(fn(f32)->f32,f32)*2]) -> f32 {
+    let args = args_arr(0);
+    let g = args(0);
+    let a = args(1);
+    a * g(a)
+}
+fn sq(x:f32) -> f32 {
+    x*x
+}
+fn main() -> i32 {
+    let x_org=(sq,5f);
+    // let y = f([x_org,x_org]);
+
+    let Dsq = rev_diff(sq);
+
+    let x=(Dsq,5f);
+    let Df = rev_diff(f);
+    let (y,pb) = Df([x,x]);
+    let Gf = pb(1f);
+    let arg_deriv = Gf(0);
+    let x_deriv = arg_deriv(1);
+
+    // x*x², 3x²
+    // 125, 75
+
+    // x⁴, 4x³
+    // 625, 500
+
+    // 42
+    10000*(y as i32)+(x_deriv as i32)
+}
