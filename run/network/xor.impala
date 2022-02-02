@@ -5,6 +5,7 @@ extern "C" {
     fn print_int(f32) -> ();
     fn print_f32(f32) -> ();
     fn sqrtf(f32) -> f32;
+    fn print(&[u8]) -> ();
 
     fn println(&[u8]) -> ();
     fn printFloat(f32) -> ();
@@ -12,9 +13,21 @@ extern "C" {
     fn printInteger(i32) -> ();
 }
 
+static in_nodes=2;
+static hidden_nodes=2;
+static out_nodes=1;
+
 fn range(mut b: i32, e: i32, body: fn(i32) -> ()) -> () {
     while b < e {
         body(b++)
+    }
+}
+
+fn relu(x:f32) -> f32 {
+    if(x<=0f) {
+        0f
+    }else{
+        x
     }
 }
 
@@ -35,9 +48,9 @@ fn network(args:[(
     let m2 = arg(3);
 
     let m1h1 = m1(0);
-    let h1 = m1h1(2)+m1h1(1)*inp(1)+m1h1(0)*inp(0);
+    let h1 = relu(m1h1(2)+m1h1(1)*inp(1)+m1h1(0)*inp(0));
     let m1h2 = m1(1);
-    let h2 = m1h2(2)+m1h2(1)*inp(1)+m1h2(0)*inp(0);
+    let h2 = relu(m1h2(2)+m1h2(1)*inp(1)+m1h2(0)*inp(0));
 
     let m2y = m2;
     let y = m2y(2)+m2y(1)*h2+m2y(0)*h1;
@@ -60,21 +73,21 @@ fn abs(x:f32) -> f32 {
 
 fn main() -> i32 {
 
-    let mut m1 = [[0f,..3],..2];
-    let mut m2 = [0f,..3];
+    let mut m1 = [[0f,..3],..2];//in+1, hidden
+    let mut m2 = [0f,..3]; // hidden+1, out=1
 
-    let bound1=sqrtf(6f)/(3f+3f);
-    let bound2=sqrtf(6f)/(3f+2f);
+    let bound1=sqrtf(6f)/(3f+3f); // hidden+1 + in+1
+    let bound2=sqrtf(6f)/(3f+2f); // hidden+1 + out+1
 
     initRandom();
 
-    for j in range(0,2) {
-        for i in range(0,3) {
+    for j in range(0,hidden_nodes) {
+        for i in range(0,1+in_nodes) {
             m1(j)(i)=randomFloat(2f*bound1)-bound1;
         }
     }
 
-    for i in range(0,3) {
+    for i in range(0,1+hidden_nodes) {
         m2(i)=randomFloat(2f*bound2)-bound2;
     }
 
@@ -88,7 +101,7 @@ fn main() -> i32 {
         [
             ([0f,0f],0f),
             ([0f,1f],1f),
-            // ([1f,0f],1f),
+            ([1f,0f],1f),
             ([1f,1f],0f)
         ];
 
@@ -115,32 +128,46 @@ fn main() -> i32 {
 
             printFloat(y);
 
-            for j in range(0,2) {
-                for i in range(0,3) {
+            for j in range(0,hidden_nodes) {
+                for i in range(0,1+in_nodes) {
                     m1_deriv_accum(j)(i)+=m1_deriv(j)(i);
                 }
             }
 
-            for i in range(0,3) {
+            for i in range(0,1+hidden_nodes) {
                 m2_deriv_accum(i)+=m2_deriv(i);
             }
         }
+        if(error_sum<0.01f) {
+            break()
+        }
 
-        for j in range(0,2) {
-            for i in range(0,3) {
+        for j in range(0,hidden_nodes) {
+            for i in range(0,1+in_nodes) {
                 m1(j)(i)=m1(j)(i)-alpha*m1_deriv_accum(j)(i);
             }
         }
 
-        for i in range(0,3) {
+        for i in range(0,1+hidden_nodes) {
             m2(i)=m2(i)-alpha*m2_deriv_accum(i);
         }
 
-        if(error_sum<0.1f) {
-            break()
-        }
     }
     println("Finished");
+
+    for j in range(0,hidden_nodes) {
+        for i in range(0,1+in_nodes) {
+            print_f32(m1(j)(i));
+            print(" ")
+        }
+        print("\n");
+    }
+    print("\n");
+
+    for i in range(0,1+hidden_nodes) {
+        print_f32(m2(i));
+        print(" ")
+    }
 
     0
 }
