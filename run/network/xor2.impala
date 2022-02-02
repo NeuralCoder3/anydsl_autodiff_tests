@@ -1,0 +1,18 @@
+extern "C" {
+    fn println(&[u8]) -> ();
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+}
+
+fn f(x:i32,y:i32) -> () {
+    ()
+}
+
+
+fn main() -> i32 {
+    // let alpha=0.1f;
+    // println("Finished");
+
+    0
+}

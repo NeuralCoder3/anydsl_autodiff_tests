@@ -53,102 +53,36 @@ fn @(true) complex_div(zt:[[f64*2]*2]) -> [f64*2] {
     ]
 }
 
-
-fn f(z:[f64*2]) -> [f64*2] {
-    // let a = z(0);
-    // let b = z(1);
-    // [
-        // z^3-1
-    //     a*a*a-3.0*a*b*b-1.0,
-    //     3.0*a*a*b-b*b*b
-        // z^4-1
-    //     a*a*a*a-6.0*a*a*b*b+b*b*b*b-1.0,
-    //     4.0*a*a*a*b-4.0*a*b*b*b
-    // ]
-    
-    /*
-    complex_sub([
-        complex_mul([z,
-        complex_mul([z,
-        complex_mul([z,
-        complex_mul([z,
-        complex_mul([z,
-        complex_mul([z,
-            z
-        ])
-        ])
-        ])
-        ])
-        ])
-        ]),
-        [1.0,0.0]
-    ])
-    */
-    let z2 = complex_mul([z,z]);
-    let z3 = complex_mul([z,z2]);
-    let z4 = complex_mul([z2,z2]);
-    let z5 = complex_mul([z2,z3]);
-    let z6 = complex_mul([z3,z3]);
-    let z8 = complex_mul([z4,z4]);
-    
-    // z^4-1
-    complex_sub([
-        z5,
-        [1.0,0.0]
-    ])
-    
-    // z^3-2z+2
-    // sin z - 1 
-    //   = sin(a)*cosh(b)+i*cos(a)sinh(b)
-    // (z-2)(z-0.5)(z+1.5)(z+2)
-    
-    
-    // z^6+z^3-1
-    /*
-    complex_sub([
-        complex_add([
-        z6,
-        z3
-        ]),
-    [1.0,0.0]
-    ])
-    */
-    
-    
-    
-    // z^8+15x^4-16
-    /*
-    complex_mul([[0.1,0.1],
-            
-    complex_sub([
-        complex_add([
-            z8,
-            complex_mul([[15.0,0.0],z4])
-        ]),
-        [16.0,0.0]
-    ])
-    
-    )
-    */
+fn helper(arg:(i32,[f64*2])) -> [f64*2] {
+    let iter = arg(0);
+    let z = arg(1);
+    if(iter<=1) {
+        z
+    }else{
+        complex_mul([helper((iter-1,z)),z])
+    }
 }
 
-fn @(true) newton(g:fn([f64*2])->[f64*2],mut z:[f64*2]) -> [f64*2] {
+fn f(arg:(i32,[f64*2])) -> [f64*2] {
+    let iter = arg(0);
+    let z = arg(1);
+    complex_sub([
+        helper(arg),
+        [1.0,0.0]
+    ])
+}
+
+fn @(true) newton(mut z:[f64*2]) -> [f64*2] {
     // f(z)
     for i in range(0, 25) {
         let Df=rev_diff(f);
-        // let za=[z(0),z(1)];
-        // let Df=rev_diff(f)(z);
-        let Dfr=Df(z);
+        let Dfr=Df((3,z));
         let fz=Dfr(0);
-        let Dz=Dfr(1);
-        let da=Dz([1.0,0.0]);
-        let db=Dz([0.0,1.0]);
-        // let dz=da; // cool but wrong
-        // let dz=db;
-        // let dz=[da(0),db(1)];
-        // let dz=[da(0)+db(0),db(1)+da(1)];
-        // let dz=Dz([1.0,1.0]);
-        // let dz=Dz([0.5,0.5]);
+        let Dz=Dfr(1); // pullback
+        // let da=Dz([1.0,0.0]);
+        let Gf=Dz([0.0,1.0]);
+        let arg_grad = Gf(0);
+        let db = arg_grad(1);
         
         // both are equal by Cauchy-Riemann
         // let dz=[da(0),db(0)];
@@ -182,7 +116,7 @@ fn main() -> i32 {
             let xc=2.0*(x as f64)/(w as f64)-1.0;
 
             // let z = f([xc,yc]);
-            let z = newton(f,[xc,yc]);
+            let z = newton([xc,yc]);
 
             let ix = (z(0)+1.0)/2.0;
             let iy = (z(1)+1.0)/2.0;
