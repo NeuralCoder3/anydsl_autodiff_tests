@@ -1,0 +1,34 @@
+fn cube(a: f32) -> f32 {
+    a * a * a
+    // cube: x => x³
+}
+
+fn f(a: f32) -> f32 {
+    let Df = rev_diff(cube);
+    let (y,pb) = Df(a);
+    pb(1f)
+    // f: x => d/dx x³ = 3x²
+}
+
+fn g(a: f32) -> f32 {
+    let Df = rev_diff(f);
+    let (y,pb) = Df(a);
+    pb(1f)
+    // g: x => d/dx² (x³) = d/dx (3x²) = 6x
+}
+
+fn main() -> i32 {
+    g(4f) as i32
+    // f(4f) as i32
+
+    // let Df = rev_diff(f);
+    // let yp = Df(4f); // <x² (3); \a -> a* (2x (3))>
+    // let y  = yp(0);
+    // let yP = yp(1);
+    // let r = y as i32;
+    // let q = yP(1f) as i32; // 2*x
+    // // let r = (f(3f)) as i32;
+    // // let q = 0;
+    // 1000 * r + q
+    // r = 3³+2*3 = 27+6 = 33
+}
