@@ -1,0 +1,25 @@
+fn f(a: (f32,i32)) -> f32 {
+    a(0)
+}
+
+fn g(a: f32) -> (f32,i32) {
+    (a,42)
+}
+
+fn h(a: f32) -> ((f32,i32)) {
+    ((a,42))
+}
+
+fn main() -> i32 {
+    let x = f((5f,2));
+    let y = g(5f);
+    let z = h(5f);
+    let ya = y(0);
+    let yb = y(1);
+    // let zab=z(0);
+    // let za = zab(0);
+    // let zb = zab(1);
+    let za = z(0);
+    let zb = z(1);
+    42
+}

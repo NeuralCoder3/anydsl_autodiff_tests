@@ -1,0 +1,11 @@
+fn g(x:&mut f32) -> f32 {
+    let y = *x;
+    *x=13f;
+    y
+}
+
+fn main() -> f32 {
+    let mut x = 42f;
+    //(x+g(&mut x))
+    x
+}

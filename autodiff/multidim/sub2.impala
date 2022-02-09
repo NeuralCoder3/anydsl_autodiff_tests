@@ -1,0 +1,25 @@
+extern "C" {
+    fn p(f32) -> ();
+}
+
+fn f(x: [f32*2]) -> f32 {
+    let a = x(0);
+    let b = x(1);
+    a-b
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let x = [5f,3f];
+    let Gf = Df(x); 
+    let y  = Gf(0);
+    let pb = Gf(1);
+    let yp = pb(1f);
+    p(y);
+    p(yp(0));
+    p(yp(1));
+    let r = y as i32;
+    let q0 = yp(0) as i32; 
+    let q1 = yp(1) as i32; 
+    // 10000 * r + 100* q0 + q1
+    42
+}

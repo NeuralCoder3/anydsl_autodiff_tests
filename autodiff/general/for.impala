@@ -1,0 +1,17 @@
+fn range(mut b: i32, e: i32, body: fn(i32) -> ()) -> () {
+    while b < e {
+        body(b++)
+    }
+}
+
+fn f(a:f32) -> f32 {
+    let mut sum = 0f;
+    for i in range(0,a as i32) {
+        sum += i as f32;
+    }
+    sum
+}
+
+fn main() -> i32 {
+    f(3f) as i32
+}

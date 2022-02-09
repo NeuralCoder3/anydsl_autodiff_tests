@@ -1,0 +1,10 @@
+
+fn main() -> f64 {
+    let k = 3;
+    let a = ~[k:f64];
+    a(2)=42.0;
+    let X = &a(1);
+    let Y = X as &[f64];
+    // a(2)
+    Y(1)
+}

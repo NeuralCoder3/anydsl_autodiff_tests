@@ -1,0 +1,39 @@
+extern "C" {
+    fn printFloat(f64) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn log(f64) -> (f64);
+    fn exp(f64) -> (f64);
+    fn sin(f64) -> (f64);
+    fn logf(f64) -> (f64);
+    fn println(&[u8]) -> ();
+}
+
+
+fn f(x: f64) -> f64 {
+    let mut k = 3;
+    let a = ~[k:f64];
+    a(1)=3.0;
+    a(2)=x;
+    let X = &a(1);
+    let Y = X as &[f64];
+    Y(1)*Y(0)
+}
+fn main() -> i32 {
+    printDouble(f(4.0));
+    0
+    // println("Let's get ready!");
+
+    // let Df = rev_diff(f);
+    // let x = 2.0;
+    // let yp = Df(x);
+    // let y  = yp(0);
+    // let yP = yp(1)(1.0);
+    // let r = y as i32;
+    // println("f(x)");
+    // printDouble(y);
+    // printDouble(f(x));
+    // println("derivatives");
+    // printDouble(yP);
+    // 0
+}

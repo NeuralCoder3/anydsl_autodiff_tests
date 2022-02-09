@@ -1,0 +1,37 @@
+
+
+fn f(x: &[f32]) -> f32 {
+    let x1 = x(0);
+    let x2 = x(1);
+    let x3 = x(2);
+    2f*x1+x3
+    // let z1 = x1 + 2f* x3;
+    // z1*z1
+}
+fn main() -> i32 {
+    //let x = [3f,2f,4f];
+    //let x = [3:f32];
+    let x = ~[3:f32];
+    //let a = f(x);
+    x(0)=3f;
+    x(1)=4f;
+    x(2)=5f;
+
+    // diff fails
+    let Df = rev_diff(f);
+    let Gf = Df(x);
+    let y = Gf(0);
+    let pb = Gf(1);
+    let yp = pb(1f);
+    let q0 = yp(0) as i32;
+    let q1 = yp(1) as i32;
+    let q2 = yp(2) as i32;
+    10000 * q0 + 100*q1 + q2
+
+    // 42
+}
+
+// %_2268: «⊤∷nat; r32» = 
+//     :lift (1∷nat, ⊤∷nat) 
+//           (2∷nat, ‹2∷nat; r32›, 1∷nat, r32, :ROp_add (0∷nat, 32∷nat)) 
+//           (%_2255#1∷i1, %_2259#1∷i1);
