@@ -1,5 +1,5 @@
-fn f(x1: f32, x2: i32) -> f32 {
-    2f*(x1*x1)
+fn f(x1: f32, x2: i32, x3: f32) -> f32 {
+    2f*(x1*x1)+x3
 }
 
 fn g(x: i32) -> (i32,f32) {
@@ -15,19 +15,21 @@ fn main() -> i32 {
     let _ = h;
 
     let Df = rev_diff(f);
-    let Gf = Df(3f,2);
+    let Gf = Df(3f,2,4f);
     let y  = Gf(0);
     let pb = Gf(1);
     let xD = pb(1f);
     let x1 = xD(0);
     let x2 = xD(1);
+    let x3 = xD(2);
 
     let r = y as i32;
     let q = x1 as i32;
+    let q2 = x3 as i32;
     // 42
     //let r = y as i32;
     //let q = yP(1f) as i32;
-    1000 * r + q
+    10000 * r + 100* q + q2
 }
 
 /*
@@ -35,16 +37,18 @@ fn main() -> i32 {
 fn @false main() -> i32 {
     let _: fn(i32) -> (i32, f32) = g;
     let _: fn(i32) -> (i32, fn(i32) -> (i32, f32)) = h;
-    let Df: fn(f32, i32) -> (f32, fn(f32) -> (f32, f64)) = rev_diff(f);
-    let Gf: (f32, fn(f32) -> (f32, f64)) = (Df(3f, 2));
+    let Df: fn(f32, i32, f32) -> (f32, fn(f32) -> (f32, f64, f32)) = rev_diff(f);
+    let Gf: (f32, fn(f32) -> (f32, f64, f32)) = (Df(3f, 2, 4f));
     let y: f32 = (Gf(0));
-    let pb: fn(f32) -> (f32, f64) = (Gf(1));
-    let xD: (f32, f64) = (pb(1f));
+    let pb: fn(f32) -> (f32, f64, f32) = (Gf(1));
+    let xD: (f32, f64, f32) = (pb(1f));
     let x1: f32 = (xD(0));
     let x2: f64 = (xD(1));
+    let x3: f32 = (xD(2));
     let r: i32 = (y as i32);
     let q: i32 = (x1 as i32);
-    ((1000 * r) + q)
+    let q2: i32 = (x3 as i32);
+    (((10000 * r) + (100 * q)) + q2)
 }
 
 */
