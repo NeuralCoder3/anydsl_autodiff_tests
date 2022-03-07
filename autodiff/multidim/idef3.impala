@@ -4,7 +4,8 @@ fn f(x: &[f32]) -> f32 {
     let x1 = x(0);
     let x2 = x(1);
     let x3 = x(2);
-    2f*x1+x3
+    x1+x3
+    // 2f*x1+x3
     // let z1 = x1 + 2f* x3;
     // z1*z1
 }

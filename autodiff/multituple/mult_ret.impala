@@ -1,0 +1,38 @@
+fn f(x: f32) -> (i32,f32) {
+    (42,x)
+}
+
+fn main() -> i32 {
+
+    /*
+    (f(2f)(1)) as i32
+    */
+    
+    
+    let Df = rev_diff(f);
+    let Gf = Df(2f);
+    
+    let y  = Gf(0);
+    let pb = Gf(2);
+    let xD = pb(1.0,1f);
+
+    let r = y as i32;
+    let q = xD as i32;
+    //let r = y as i32;
+    //let q = yP(1f) as i32;
+    10000 * r + q
+    
+    
+    /*
+    let y  = Gf(0)(1);
+    let pb = Gf(1);
+    let xD = pb(1.0,1f);
+
+    let r = y as i32;
+    let q = xD as i32;
+    //let r = y as i32;
+    //let q = yP(1f) as i32;
+    10000 * r + q
+    */
+    // 42
+}

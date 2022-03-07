@@ -1,0 +1,9 @@
+fn f(x1: f32) -> (f32,i32) {
+    (2f*(x1*x1),42)
+}
+fn main() -> i32 {
+    // let Df = rev_diff(f);
+
+    let x=f(4f);
+    x(1)
+}

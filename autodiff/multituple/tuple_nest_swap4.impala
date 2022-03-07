@@ -10,7 +10,14 @@ fn f(args_arr:[([f32*2],i32)*2]) -> f32 {
     //     3f*(x20)
     // }
 }
+
+// fn g(x:i32) -> [i32*2] {
+//     [x,x]
+// }
+
 fn main() -> i32 {
+    // let h = g;
+
     let Df = rev_diff(f);
     let x = ([3f,2f],5);
     let yp = Df([x,x]);
@@ -33,4 +40,8 @@ fn main() -> i32 {
 
     // 3x, 3
     // 9,3
+
+
+    // 5xy, 5y, 5x
+    // 30, 10, 15
 }

@@ -1,11 +1,10 @@
-fn f(x: f32) -> f32 {
-    if x <= 3f {
-        x*x*x
-    }
-    else {
-        x*x
-    }
+fn f(a: f32) -> f32 {
+    g(2f*a)+g(a*a)
 }
+fn g(a: f32) -> f32 {
+    3f*a*a
+}
+
 fn main() -> i32 {
     let Df = rev_diff(f);
     let yp = Df(2f);
@@ -13,8 +12,7 @@ fn main() -> i32 {
     let yP = yp(1);
     let r = y as i32;
     let q = yP(1f) as i32;
-    1000 * r + q
-    // 2 => 8012
-    // 3 => 27027
-    // 4 => 16008
+    10000 * r + q
+    // 3(2a)²+3(a²)², 12a(a²+2)
+    // 96, 144
 }
