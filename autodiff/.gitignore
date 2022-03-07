@@ -7,3 +7,5 @@ tmp.txt
 *.s
 *.out
 *.bc
+Ü.log
+* copy*
