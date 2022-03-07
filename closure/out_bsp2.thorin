@@ -1,0 +1,73 @@
+IMPALA
+~~~~~~
+
+extern fn f(x:int, y:i32) -> i32 {
+    fn g(z:i32) -> i32 {
+        x + y * z
+    }
+    g (42)
+}
+
+
+VOR CLOSURE CONVERSION
+~~~~~~~~~~~~~~~~~~~~~~
+
+module 'bsp2
+        
+        f_704: cn [:mem, i32, i32, cn [:mem, i32]] = {
+            %g_cont_787: ⊥∷★ = g_735 (MEM@{f_704}, 42∷i32, g_cont_783);
+            -> λ@(0∷i1) %g_cont_787;
+        }
+            
+            g_735: cn [:mem, i32, cn [:mem, i32]] = {
+                %_765: i32 = (:Wrap_mul (1∷nat, 4294967296∷nat)) (@{f_704, 2∷i2}, @{g_735, 1∷i₃});
+                %_768: i32 = (:Wrap_add (1∷nat, 4294967296∷nat)) (@{f_704, 1∷i2}, %_765);
+                %_772: ⊥∷★ = RET@{g_735} (MEM@{g_735}, %_768);
+                -> λ@(0∷i1) %_772;
+            }
+            
+            g_cont_783: cn [:mem, i32] = {
+                %_791: ⊥∷★ = RET@{f_704} @{g_cont_783};
+                -> λ@(0∷i1) %_791;
+            }
+
+CLOSURE CONVERTED
+~~~~~~~~~~~~~~~~~
+
+module 'bsp2
+       
+        ** Closure Typ für die continuation von f/g
+        cc_pct_1010: ★ = {
+            -> [@{cc_pct_1010}, cn [@{cc_pct_1010}, :mem, i32]];
+        }
+           
+        ** g hat (x, y) als freie Paramter, das Env hat also also Typ [i32, i32]
+        ** Da g aber nur direkt aufgerufen wird, hat der Scalarize-Pass den Tupel-Paramter in zwei Paramter gesplittet (-> sca_ Prefix)
+        sca_g_1022: cn [i32, i32, :mem, i32, cc_pct_1010] = {
+                                                                                                ** Call des continuation closures
+            %cc_app_f_1028: cn [@{cc_pct_1010}, :mem, i32] = #{1∷i1} @{sca_g_1022, 4∷i₅};       ** cont_env = #0 cont_closure
+            %cc_app_env_2: @{cc_pct_1010} = #{0∷i1} @{sca_g_1022, 4∷i₅};                        ** cont = #1 cont_closure
+
+                                                                                                ** Sonstige Paramter für continuation
+            %_1066: i32 = (:Wrap_mul (1∷nat, 4294967296∷nat)) (@{sca_g_1022, 1∷i₅}, @{sca_g_1022, 3∷i₅});  ** y = 1. env-Paramter, z ist jetzt der 3. Paramter
+            %_1068: i32 = (:Wrap_add (1∷nat, 4294967296∷nat)) (@{sca_g_1022, 0∷i₅}, %_1066);               ** x = 2. env-Paramter
+
+            %_1070: ⊥∷★ = %cc_app_f_1028 (%cc_app_env_2, @{sca_g_1022, 2∷i₅}, %_1068);                     ** cont (cont_env, :mem, x+y*z)
+            -> λ@(0∷i1) %_1070;
+        }
+            
+            g_cont_1085: cn [cc_pct_1010, :mem, i32] = {
+                %cc_app_f_1088: cn [@{cc_pct_1010}, :mem, i32] = #{1∷i1} @{g_cont_1085, 0∷i₃};
+                %cc_app_env_3: @{cc_pct_1010} = #{0∷i1} @{g_cont_1085, 0∷i₃};
+                %_1092: ⊥∷★ = %cc_app_f_1088 (%cc_app_env_3, @{g_cont_1085, 1∷i₃}, @{g_cont_1085, 2∷i₃});
+                -> λ@(0∷i1) %_1092;
+            }
+            
+            f_1017: cn [[], :mem, i32, i32, cc_pct_1010] = {
+                
+                ** Calls zu g: g (env_1 = x, env_2 = y, :mem, 42, continuation = (continuation f, g_cont))
+
+                %_1095: ⊥∷★ = sca_g_1022 (@{f_1017, 2∷i₅}, @{f_1017, 3∷i₅}, @{f_1017, 1∷i₅}, 42∷i32, (@{f_1017, 4∷i₅}, g_cont_1085)∷cc_pct_1010);
+                -> λ@(0∷i1) %_1095;
+            }
+

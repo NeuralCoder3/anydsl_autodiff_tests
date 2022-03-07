@@ -1,0 +1,104 @@
+
+cc_pct_1140: ★ = {
+            -> [@{cc_pct_1140}, cn [@{cc_pct_1140}, :mem, i32]];
+        }
+            
+            _cont_1356: cn [[cc_pct_1140, i32], :mem, r32] = {
+                %cc_fv_1431: cc_pct_1140 = #{0∷i1} @{_cont_1356, 0∷i₃};
+                %cc_app_f_1474: cn [@{cc_pct_1140}, :mem, i32] = #{1∷i1} %cc_fv_1431;
+                %cc_app_env_5: @{cc_pct_1140} = #{0∷i1} %cc_fv_1431;
+                %cc_fv_1432: i32 = #{1∷i1} @{_cont_1356, 0∷i₃};
+                %_1468: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_1356, 2∷i₃};
+                %_1472: i32 = (:Wrap_add (1∷nat, 4294967296∷nat)) (%cc_fv_1432, %_1468);
+                %_1477: ⊥∷★ = %cc_app_f_1474 (%cc_app_env_5, @{_cont_1356, 1∷i₃}, %_1472);
+                -> λ@(0∷i1) %_1477;
+            }
+            
+            _cont_1249: cn [cc_pct_1140, :mem, r32, cc_pct_1167] = {
+                %cc_app_f_1394: cn [@{cc_pct_1167}, :mem, r32, cc_pct_1169] = #{1∷i1} @{_cont_1249, 3∷i2};
+                %cc_app_env_4: @{cc_pct_1167} = #{0∷i1} @{_cont_1249, 3∷i2};
+                %_1388: i32 = (:Conv_r2s (4294967296∷nat, 32∷nat)) @{_cont_1249, 2∷i2};
+                %_1390: i32 = (:Wrap_mul (1∷nat, 4294967296∷nat)) (1000∷i32, %_1388);
+                %_1397: ⊥∷★ = %cc_app_f_1394 (%cc_app_env_4, @{_cont_1249, 1∷i2}, 1∷r32, ((@{_cont_1249, 0∷i2}, %_1390), _cont_1356)∷cc_pct_1169);
+                -> λ@(0∷i1) %_1397;
+            }
+            
+            main_1149: cn [[], :mem, cc_pct_1140] = {
+                %mk_pullback_1237: cc_pct_1212 -> cc_pct_1220 = :rev_diff ‹2∷nat; r32›;
+                %_1243: cc_pct_1220 = %mk_pullback_1237 ((), f_1241)∷cc_pct_1167;
+                %cc_app_f_1256: cn [@{cc_pct_1220}, :mem, r32, cc_pct_1222] = #{1∷i1} %_1243;
+                %cc_app_env_2: @{cc_pct_1220} = #{0∷i1} %_1243;
+                %_1259: ⊥∷★ = %cc_app_f_1256 (%cc_app_env_2, @{main_1149, 1∷i₃}, 4∷r32, (@{main_1149, 2∷i₃}, _cont_1249)∷cc_pct_1165);
+                -> λ@(0∷i1) %_1259;
+            }
+        
+        cc_pct_1226: ★ = {
+            -> [@{cc_pct_1226}, cn [@{cc_pct_1226}, :mem, r32]];
+        }
+        
+        cc_pct_1224: ★ = {
+            -> [@{cc_pct_1224}, cn [@{cc_pct_1224}, :mem, r32, cc_pct_1226]];
+        }
+        
+        cc_pct_1222: ★ = {
+            -> [@{cc_pct_1222}, cn [@{cc_pct_1222}, :mem, r32, cc_pct_1224]];
+        }
+        
+        cc_pct_1220: ★ = {
+            -> [@{cc_pct_1220}, cn [@{cc_pct_1220}, :mem, r32, cc_pct_1222]];
+        }
+        
+        cc_pct_1214: ★ = {
+            -> [@{cc_pct_1214}, cn [@{cc_pct_1214}, :mem, r32]];
+        }
+        
+        cc_pct_1212: ★ = {
+            -> [@{cc_pct_1212}, cn [@{cc_pct_1212}, :mem, r32, cc_pct_1214]];
+        }
+        
+        cc_pct_1169: ★ = {
+            -> [@{cc_pct_1169}, cn [@{cc_pct_1169}, :mem, r32]];
+        }
+            
+            if_join_1414: cn [cc_pct_1169, :mem, r32] = {
+                %cc_app_f_1487: cn [@{cc_pct_1169}, :mem, r32] = #{1∷i1} @{if_join_1414, 0∷i₃};
+                %cc_app_env_6: @{cc_pct_1169} = #{0∷i1} @{if_join_1414, 0∷i₃};
+                %_1490: ⊥∷★ = %cc_app_f_1487 (%cc_app_env_6, @{if_join_1414, 1∷i₃}, @{if_join_1414, 2∷i₃});
+                -> λ@(0∷i1) %_1490;
+            }
+            
+            if_else_1291: cn [[cc_pct_1169, r32], :mem] = {
+                %cc_fv_1402: cc_pct_1169 = #{0∷i1} @{if_else_1291, 0∷i1};
+                %cc_fv_1403: r32 = #{1∷i1} @{if_else_1291, 0∷i1};
+                %_1420: ⊥∷★ = if_join_1414 (%cc_fv_1402, @{if_else_1291, 1∷i1}, %cc_fv_1403);
+                -> λ@(0∷i1) %_1420;
+            }
+            
+            if_then_1301: cn [cc_pct_1169, :mem] = {
+                %_1428: ⊥∷★ = if_join_1414 (@{if_then_1301, 0∷i1}, @{if_then_1301, 1∷i1}, 0∷r32);
+                -> λ@(0∷i1) %_1428;
+            }
+            
+            f_1241: cn [[], :mem, r32, cc_pct_1169] = {
+                %_1323: i1 = (:RCmp_le (0∷nat, 32∷nat)) (@{f_1241, 2∷i2}, 0∷r32);
+                %_1324: cc_pct_1276 = #{%_1323} (
+                    ((@{f_1241, 3∷i2}, @{f_1241, 2∷i2}), if_else_1291)∷cc_pct_1276,
+                    (@{f_1241, 3∷i2}, if_then_1301)∷cc_pct_1276
+                );
+                %cc_app_f_1326: cn [@{cc_pct_1276}, :mem] = #{1∷i1} %_1324;
+                %cc_app_env_3: @{cc_pct_1276} = #{0∷i1} %_1324;
+                %_1330: ⊥∷★ = %cc_app_f_1326 (%cc_app_env_3, @{f_1241, 1∷i2});
+                -> λ@(0∷i1) %_1330;
+            }
+        
+        cc_pct_1167: ★ = {
+            -> [@{cc_pct_1167}, cn [@{cc_pct_1167}, :mem, r32, cc_pct_1169]];
+        }
+        
+        cc_pct_1276: ★ = {
+            -> [@{cc_pct_1276}, cn [@{cc_pct_1276}, :mem]];
+        }
+        
+        cc_pct_1165: ★ = {
+            -> [@{cc_pct_1165}, cn [@{cc_pct_1165}, :mem, r32, cc_pct_1167]];
+        }

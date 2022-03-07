@@ -1,0 +1,55 @@
+IMPALA
+~~~~~~
+
+extern fn apply(g: fn(int)->!, n:int) -> ! {
+    g(n)
+}
+
+VOR CLOSURE CONVERSION
+~~~~~~~~~~~~~~~~~~~~~~
+
+** SYNTAX       BEDEUTUNG
+#{i} tupel      i-te Projektion von tupel
+@{f}            Parameter von f (dh. das ganze Tupel)
+@{f, i}         i-ter Parameter von f (shortcut für #{i} @{f})
+MEM@{f}         :mem Parameter von f
+RET@{f}         contiunation Parameter von f
+
+
+module 'simple_ho_arg
+        
+        apply_707: cn [:mem, cn [:mem, i32], i32] = {
+            %g_cont_728: ⊥∷★ = @{apply_707, 1∷i₃} (MEM@{apply_707}, @{apply_707, 2∷i₃});
+            -> λ@(0∷i1) %g_cont_728;
+        }
+
+CLOSURE CONVERTED
+~~~~~~~~~~~~~~~~~
+
+module 'simple_ho_arg
+       
+        
+        ** Closures werden als Tupel (environment, function) dargestellt
+        ** Bei parametern (wie g) wird das Environment mit einem Sigma-Typ versteckt,
+        ** also  cn [:mem, i32] ~> Σ (env_type:★). [env_type, cn[env_type, :mem, i32]] 
+        ** das sind die pct-Typen ("Packed Closure Type")
+
+        cc_pct_819: ★ = {
+            -> [@{cc_pct_819},                  ** 1. Variable des Σ-Types (= env_type)
+              cn [@{cc_pct_819}, :mem, i32]];   ** 2. Funktions-Typ (= cn [env_type, :mem, i32])
+        }
+           
+
+        ** Funtionen bekommen dann dementsprechend auch einen Environment-Parameter (hier das [])
+        ** die Typen heißen ct ("Closure Type")
+        ** der g paramter ist hier ein closure
+
+            apply_829: cn [[], :mem, cc_pct_819, i32] = {
+                                                                                                        ** Der folgen Code entspricht g(x):
+                %cc_app_f_836: cn [@{cc_pct_819}, :mem, i32] = #{1∷i1} @{apply_829, 2∷i2};              ** Entpacke env: env_g = proj_1 g'
+                %cc_app_env_2: @{cc_pct_819} = #{0∷i1} @{apply_829, 2∷i2};                              ** Entpacke code: g = proje_0 g'
+                %_844: ⊥∷★ = %cc_app_f_836 (%cc_app_env_2, @{apply_829, 1∷i2}, @{apply_829, 3∷i2});     ** g env_g <args>
+                -> λ@(0∷i1) %_844;
+            }
+
+
