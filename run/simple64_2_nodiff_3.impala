@@ -1,0 +1,18 @@
+extern "C" {
+    fn printFloat(f64) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn println(&[u8]) -> ();
+}
+
+fn @(true) f(a: f64, b: f64) -> (f64,f64) {
+    (a*a*b,b)
+}
+fn main() -> i32 {
+    let y = f(4.0,3.0); 
+    let r = y(0) as i32;
+    println("y");
+    printDouble(y(0));
+    printDouble(y(1));
+    r
+}

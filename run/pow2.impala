@@ -1,0 +1,41 @@
+extern "C" {
+    fn printFloat(f64) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn log(f64) -> (f64);
+    fn exp(f64) -> (f64);
+    fn sin(f64) -> (f64);
+    fn logf(f64) -> (f64);
+    fn println(&[u8]) -> ();
+}
+
+
+fn @(true) pow(a: f64, b: i32) -> f64 {
+    if(b<=0) {
+        1.0
+    } else {
+        a*pow(a,b-1)
+    }
+}
+
+fn main() -> i32 {
+    println("Let's get ready!");
+
+    let Df = rev_diff(pow);
+    let x = 4.0;
+    let yp = Df(x,2);
+    let y  = yp(0);
+    let yP = yp(1)(1.0);
+    let r = y as i32;
+    println("pow(x)");
+    printDouble(y);
+    printDouble(pow(x,2));
+    println("derivatives");
+    printDouble(yP(0));
+    0
+    // x³+(3x²)² = 9x⁴+x³ = x³(9x+1)
+    // 152
+    
+    // 3x²(12x+1)
+    // 300
+}
