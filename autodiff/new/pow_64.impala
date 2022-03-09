@@ -1,0 +1,17 @@
+fn @(true) pow(a: f64, b: i32) -> f64 {
+    if(b<=0) {
+        1.0
+    } else {
+        a*pow(a,b-1)
+    }
+}
+fn main() -> i32 {
+    let Df = rev_diff(pow);
+    let Gf = Df(4.0,3); 
+    let y  = Gf(0);
+    let pb = Gf(1);
+    let grad = pb(1.0);
+    let r = y as i32;
+    let q = grad(0) as i32; 
+    1000 * r + q
+}

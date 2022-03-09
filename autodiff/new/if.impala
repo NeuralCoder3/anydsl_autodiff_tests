@@ -1,0 +1,17 @@
+fn @(true) f(a: f32, b: i32) -> f32 {
+    if(b<=2) {
+        a*a
+    } else {
+        a*a*a
+    }
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let Gf = Df(4f,2); 
+    let y  = Gf(0);
+    let pb = Gf(1);
+    let grad = pb(1f);
+    let r = y as i32;
+    let q = grad(0) as i32; 
+    1000 * r + q
+}
