@@ -2,6 +2,7 @@ import subprocess
 import os 
 import shutil
 import datetime
+from threading import Timer
 
 outdir="output/"
 outBackupDir="output_backup/"
@@ -50,12 +51,23 @@ for root, dirs, files in sorted(os.walk(".")):
             # p=subprocess.run([impala]+args+[filename], capture_output=True)
 
             cmd=[impala]+args+[filename]
-            p=subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+            p=subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE,)
+            
+            worked=False
             out=""
-            for l in p.stdout:
-                out+=l.decode("utf-8")
-            outc,errc=p.communicate()
-            if p.returncode == 0:
+            
+            timer = Timer(5, p.kill)
+            try:
+                timer.start()
+                # stdout, stderr = proc.communicate()
+                for l in p.stdout:
+                    out+=l.decode("utf-8")
+                outc,errc=p.communicate()
+                worked=(p.returncode == 0)
+            finally:
+                timer.cancel()
+                            
+            if worked:
                 log("👍"+filename+" "+suffix+": okay")
             else:
                 log("💩"+filename+" "+suffix+": error")
