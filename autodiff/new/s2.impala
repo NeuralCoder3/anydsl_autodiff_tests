@@ -1,0 +1,12 @@
+fn f(a: u32) -> f32 {
+    42f
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let Gf = Df(4u32); 
+    let y  = Gf(0);
+    let pb = Gf(1);
+    let r = y as i32;
+    let q = pb(1f) as i32; 
+    1000 * r + q
+}
