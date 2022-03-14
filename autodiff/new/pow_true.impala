@@ -1,4 +1,4 @@
-fn pow(a: f32, b: i32) -> f32 {
+fn @(true) pow(a: f32, b: i32) -> f32 {
     if(b<=0) {
         1f
     } else {

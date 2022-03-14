@@ -1,0 +1,8 @@
+fn @(true) f(a: f64, b: f64) -> f64 {
+    a*a*b
+}
+fn main() -> i32 {
+    let y = f(4.0,3.0); 
+    let r = y as i32;
+    r
+}

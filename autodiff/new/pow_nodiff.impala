@@ -1,0 +1,12 @@
+fn pow(a: f32, b: i32) -> f32 {
+    if(b<=0) {
+        1f
+    } else {
+        a*pow(a,b-1)
+    }
+}
+fn main() -> i32 {
+    let y = pow(4f,3); 
+    let r = y as i32;
+    r
+}
