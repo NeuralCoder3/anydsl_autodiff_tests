@@ -1,0 +1,19 @@
+fn f(x: f32, d:i32) -> f32 {
+    let a = ~[3:f32];
+    a(0)=3f;
+    x
+}
+fn main() -> i32 {
+
+    // let r = f(x,0);
+    // r as i32
+    let Df = rev_diff(f);
+    let Gf = Df(42f,0); 
+    let y  = Gf(0);
+    let pb = Gf(1);
+    let r = y as i32;
+    let grad = pb(1f);
+    let q0 = grad(0) as i32; 
+    let q2 = grad(1) as i32; 
+    10000 * r + 100*q0 + q2
+}
