@@ -1,8 +1,5 @@
 fn f(x: &[f32], d:i32) -> f32 {
-    let x1 = x(0);
-    // let x2 = x(1);
-    // let x3 = x(2);
-    x1//+x3
+    42f
 }
 fn main() -> i32 {
 
