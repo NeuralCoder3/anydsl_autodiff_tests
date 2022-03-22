@@ -1,5 +1,9 @@
 fn f(a: f32) -> f32 {
-    a * a 
+    if(a<=2f){
+        a*a*a
+    }else {
+        a * a
+    }
 }
 fn main() -> i32 {
     let Df = rev_diff(f);
