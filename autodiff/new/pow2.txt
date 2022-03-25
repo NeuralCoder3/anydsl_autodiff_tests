@@ -1,0 +1,16 @@
+
+            g_cont_37968: Cn [:mem, r32]: (mem_37987, x) = {
+                x': r32 = :ROp_mul (0∷nat, 32∷nat) (1∷r32, x);
+                x²: r32 = :ROp_mul (0∷nat, 32∷nat) (x, x');
+                x³: r32 = :ROp_mul (0∷nat, 32∷nat) (x, x²);
+                // out x³=x*(x*(1*x)) as y
+
+                x²': r32 = :ROp_mul (0∷nat, 32∷nat) (1∷r32, x²);
+                x'²: r32 = :ROp_mul (0∷nat, 32∷nat) (x', x');
+                2x'²: r32 = :ROp_add (0∷nat, 32∷nat) (x²', x'²);
+                3x'²: r32 = :ROp_add (0∷nat, 32∷nat) (x²', 2x'²);
+                // out 3x² as gradient
+                _38323: ⊥∷★ = return_37979 (mem_37987, ...);
+                λ@(0∷i1) _38323
+            }
+

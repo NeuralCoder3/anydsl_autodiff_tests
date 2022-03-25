@@ -1,3 +1,7 @@
+extern "C" {
+    fn g() -> f32;
+}
+
 fn @(true) pow(a: f32, b: i32) -> f32 {
     if(b<=0) {
         1f
@@ -7,7 +11,7 @@ fn @(true) pow(a: f32, b: i32) -> f32 {
 }
 fn main() -> i32 {
     let Df = rev_diff(pow);
-    let Gf = Df(4f,3); 
+    let Gf = Df(g(),3); 
     let y  = Gf(0);
     let pb = Gf(1);
     let grad = pb(1f);
