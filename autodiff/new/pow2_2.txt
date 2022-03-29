@@ -1,4 +1,3 @@
-
 g_cont_37968: Cn [:mem, r32]: (mem_37987, x) = {
     x²: r32 = :ROp_mul (0∷nat, 32∷nat) (x, x);
     x³: r32 = :ROp_mul (0∷nat, 32∷nat) (x, x²);

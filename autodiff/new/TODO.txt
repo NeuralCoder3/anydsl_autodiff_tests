@@ -2,10 +2,10 @@ new test cases:
 
 
 ([float],int)
-control flow
+    control flow
 ((float,int), int)
 [tup]
-call to tuple fun
+    call to tuple fun
 
 
 array

@@ -19,3 +19,4 @@ fn main() -> i32 {
     let q = grad(0) as i32; 
     1000 * r + q
 }
+
