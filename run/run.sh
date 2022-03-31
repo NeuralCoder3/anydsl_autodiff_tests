@@ -1,7 +1,8 @@
 #!/bin/bash
 source ../../project.sh
 
-IMPALA_FILE=$1
+# remove file ending from first argument and add .impala, write the result as variable IMPALA_FILE
+IMPALA_FILE=${1%.*}.impala
 THORIN_LOG=${1%.*}.thorin.log
 THORIN_OPT_LOG=${1%.*}_opt.thorin.log
 LLVM_FILE=${1%.*}
@@ -26,3 +27,4 @@ echo "Linking"
 clang -O3 lib.c -c
 # clang -O3 -flto lib.o $LLVM_FILE_ENDING -lm -lpcre -lgmp -s -o $OUT_FILE
 clang -O3 -flto lib.o $LLVM_FILE_ENDING -s -o $OUT_FILE
+./$OUT_FILE

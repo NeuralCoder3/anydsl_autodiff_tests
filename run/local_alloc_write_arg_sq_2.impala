@@ -1,0 +1,32 @@
+extern "C" {
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn log(f64) -> (f64);
+    fn exp(f64) -> (f64);
+    fn logf(f32) -> (f32);
+    fn println(&[u8]) -> ();
+}
+fn f(x: f32, d:i32) -> f32 {
+    let a = ~[3:f32];
+    a(0)=x;
+    a(0)*a(0)
+}
+fn main() -> i32 {
+
+    // let r = f(x,0);
+    // r as i32
+    let Df = rev_diff(f);
+    let Gf = Df(4f,0); 
+    let y  = Gf(0);
+    let pb = Gf(1);
+    let r = y as i32;
+    let grad = pb(1f);
+    let q0 = grad(0) as i32; 
+    let q2 = grad(1) as i32; 
+    printFloat(y);
+    println("");
+    printFloat(grad(0));
+    printDouble(grad(1));
+    0
+}
