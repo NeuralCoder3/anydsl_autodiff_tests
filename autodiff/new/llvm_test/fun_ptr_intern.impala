@@ -1,0 +1,9 @@
+fn @(false) g(x: f32) -> f32 {
+    x * x
+}
+
+fn main() -> i32 {
+    let mut h = g;
+    let mut p = h(4f);
+    p as i32
+}

@@ -1,0 +1,40 @@
+extern "C" {
+    fn g() -> i32;
+}
+
+
+fn main() -> i32 {
+
+    let mut a = 0;
+    let b = g();
+    while(a<b) {
+        let mut a2=0;
+        let b2 = g();
+        while(a2<b2) {
+            let mut a3=0;
+            let b3 = g();
+            while(a3<b3) {
+                let mut a4=0;
+                let b4 = g();
+                while(a4<b4) {
+                    let mut a5=0;
+                    let b5 = g();
+                    while(a5<b5) {
+                        let mut a6=0;
+                        let b6 = g();
+                        while(a6<b6) {
+                            a6++;
+                        }
+                        a5++;
+                    }
+                    a4++;
+                }
+                a3++;
+            }
+            a2++;
+        }
+        a++;
+    }
+
+    0
+}

@@ -1,0 +1,52 @@
+extern "C" {
+    fn g() -> i32;
+    fn h() -> i32;
+}
+
+fn f9(x:i32) -> i32 {
+    9*x
+}
+
+fn f8(x:i32) -> i32 {
+    f9(8*x+h())
+}
+
+fn f7(x:i32) -> i32 {
+    f8(7*x+h())
+}
+
+fn f6(x:i32) -> i32 {
+    f7(6*x+h())
+}
+
+fn f5(x:i32) -> i32 {
+    f6(5*x+h())
+}
+
+fn f4(x:i32) -> i32 {
+    f5(4*x+h())
+}
+
+fn f3(x:i32) -> i32 {
+    f4(3*x+h())
+}
+
+fn f2(x:i32) -> i32 {
+    f3(2*x+h())
+}
+
+fn f1(x:i32) -> i32 {
+    f2(x+h())
+}
+
+fn main() -> i32 {
+
+    let fx = f1(g());
+    // let diff = rev_diff(f);
+
+    // let (fx, gradient) = diff((3 as u64, x), 3);
+    // let tangents  = gradient(1.0);
+    // let (size, xd) = tangents(0);
+
+    fx 
+}

@@ -1,0 +1,6 @@
+fn f(a: f32) -> f32 {
+    a * a 
+}
+fn main() -> i32 {
+    f(4f) as i32
+}

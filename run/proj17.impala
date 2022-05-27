@@ -1,0 +1,32 @@
+extern "C" {
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn println(&[u8]) -> ();
+}
+
+fn pb(t: f64) -> (f32, f64) {
+    (1f,0.0)
+}
+
+fn pb2(t: f64) -> (f32, f64) {
+    (0f,0.0)
+}
+
+fn main() -> i32 {
+    let x : &mut[f32] = ~[4:f32];
+    x(0) = 1.2f;
+
+    let gradient = (if x(0) > 0f{
+        pb
+    }else{
+        pb2
+    });
+
+    let tangents  = gradient(1.0);
+    let xd = tangents(0);
+    let yd = tangents(1);
+    printFloat(xd);
+    printDouble(yd);
+    0
+}

@@ -1,0 +1,6 @@
+extern "C" {
+    fn g(f32) -> f32;
+}
+fn main() -> i32 {
+    g(4f) as i32
+}

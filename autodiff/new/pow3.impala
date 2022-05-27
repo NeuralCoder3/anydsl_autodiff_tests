@@ -1,0 +1,18 @@
+fn pow(a: f32, b: i32) -> f32 {
+    if(b<=0) {
+        1f
+    } else {
+        a*pow(a,b-1)
+    }
+}
+fn main() -> i32 {
+    let Df = rev_diff(pow);
+    let Gf = Df(5f,3); 
+    let y  = Gf(0);
+    let pb = Gf(1);
+    let grad = pb(1f);
+    let r = y as i32;
+    let q = grad(0) as i32; 
+    1000 * r + q
+}
+

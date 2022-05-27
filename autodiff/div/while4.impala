@@ -1,0 +1,31 @@
+extern "C" {
+    fn g() -> i32;
+}
+
+fn f(arr: &[f64], n: i32) -> f64 {
+    let mut mx = arr(0);
+    let mut i = 1;
+    while (i < n) {
+        if (mx < arr(i)){
+            mx = arr(i);
+        }
+        i++;
+    }
+    mx
+}
+
+fn main() -> i32 {
+    let x : &mut[f64] = ~[3:f64];
+    x(0) = 32.0;
+    x(1) = 5.0;
+    x(2) = 4.0;
+
+    let fx = f(x,g());
+    // let diff = rev_diff(f);
+
+    // let (fx, gradient) = diff((3 as u64, x), 3);
+    // let tangents  = gradient(1.0);
+    // let (size, xd) = tangents(0);
+
+    0
+}

@@ -1,0 +1,39 @@
+extern "C" {
+    fn printString(&[u8]) -> ();
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn log(f64) -> (f64);
+    fn exp(f64) -> (f64);
+    fn logf(f32) -> (f32);
+    fn lgamma(f64) -> (f64);
+    fn randomDouble(f64, f64) -> (f64);
+}
+
+fn loss(
+    weights: &[f64],
+    input: &[f64],
+    target: i32 ) -> (f64){
+
+    -log(input(0))
+    // log(input(0))
+}
+
+fn main(argc: i32,argv :&[&[u8]]) -> i32 {
+    let weight_size = 282810;
+    let weights = ~[weight_size:f64];
+
+    let input = ~[2828:f64];
+    let output = ~[10:f64];
+
+    let label: i32 = 1;
+
+    let Df = rev_diff(loss);
+    let (y,pb) = Df(((282810) as u64, weights),
+                ((2828) as u64, input), label);
+
+    let gradients = pb(1.0);
+    let (weights_d_size, weights_d) = gradients(0);
+
+    0
+}

@@ -1,0 +1,7 @@
+extern "C" {
+    fn g(f32) -> f32;
+}
+fn main() -> i32 {
+    let mut h = g;
+    h(4f) as i32
+}

@@ -1,0 +1,19 @@
+extern "C" {
+    fn exp(x:f64) -> (f64);
+    fn log(x:f64) -> (f64);
+    fn sqrt(x:f64) -> (f64);
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+}
+
+fn main() -> i32 {
+    let diff = rev_diff(exp);
+
+    let (fx, pb) = diff(2.0);
+    let gradient  = pb(1.0);
+    printDouble(fx);
+    printDouble(gradient);
+
+    0
+}

@@ -1,0 +1,42 @@
+extern "C" {
+    fn exp(x:f64) -> (f64);
+    fn log(x:f64) -> (f64);
+    fn sqrt(x:f64) -> (f64);
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+}
+
+fn layer(input: &[f64], output: &mut[f64], n: i32) -> (f64){
+    output(0) = input(n);
+    0.0
+}
+
+
+fn f(input: &[f64], n: i32) -> f64 {
+    let output : &mut[f64] = ~[3:f64];
+    output(0) = input(n); // funktioniert
+    //layer(input, output, n); // funktioniert nicht
+    output(0)
+    // input(n)
+}
+
+fn main() -> i32 {
+    let input : &mut[f64] = ~[3:f64];
+    let x : &mut[f64] = ~[3:f64];
+    x(0) = 32.0;
+    x(1) = 5.0;
+    x(2) = 4.0;
+
+    let diff = rev_diff(f);
+
+    let (fx, pb) = diff((3 as u64, x),2);
+    let gradients  = pb(1.0);
+    let (size, xd) = gradients(0);
+    printDouble(fx);
+    printDouble(xd(0));
+    printDouble(xd(1));
+    printDouble(xd(2));
+
+    0
+}

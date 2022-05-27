@@ -1,0 +1,20 @@
+extern "C" {
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn log(f64) -> (f64);
+    fn exp(f64) -> (f64);
+    fn logf(f32) -> (f32);
+    fn println(&[u8]) -> ();
+}
+
+fn @(false) g(x: f32) -> f32 {
+    x * x
+}
+
+fn main() -> i32 {
+    let mut h = g;
+    let mut p = h(4f);
+    printFloat(p);
+    0
+}

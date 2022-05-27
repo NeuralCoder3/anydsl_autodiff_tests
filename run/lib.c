@@ -136,3 +136,53 @@ void printInteger(int i) {
 void* anydsl_alloc(int grid, int size) {
     return malloc(size);
 }
+
+
+struct float_pair {
+    float x;
+    float y;
+};
+
+struct float_pair pow_diff(float x, float y) {
+    struct float_pair ret = {y*pow(x,y-1), 42};
+    return ret;
+    // float_pair p;
+    // p.x = 2.0f;
+    // p.y = 3.0f;
+    // return p;
+}
+
+// float* pow_diff(float x, float y) {
+//     return new float[]({2.0, 3.0});
+// }
+
+
+void* embed(float *x) {
+    return x;
+}
+
+float embed_diff(float *x) {
+    return 1.0f;
+}
+
+void compute(void *p) {
+    float* f = (float*)p;
+    float x = *f;
+    float y = x*x;
+    *f = y;
+}
+
+double compute_diff(void *p) {
+    float* f = (float*)p;
+    float x = *f;
+    return 2.0*x;
+}
+
+
+float reify(void* x) {
+    return *(float*)x;
+}
+
+double reify_diff(float x) {
+    return 0.0f;
+}

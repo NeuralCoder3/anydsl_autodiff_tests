@@ -1,0 +1,268 @@
+extern "C" {
+    fn printString(&[u8]) -> ();
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn log(f64) -> (f64);
+    fn exp(f64) -> (f64);
+    fn logf(f32) -> (f32);
+    fn lgamma(f64) -> (f64);
+    fn malloc(i64) -> (&mut[f64]);
+    fn randomDouble(f64, f64) -> (f64);
+    fn read_gmm_size(
+        file: &[u8],
+        d: &mut i32,
+        k: &mut i32,
+        n: &mut i32
+    ) -> ();
+    fn read_gmm(
+        file: &[u8],
+        d: &mut i32,
+        k: &mut i32,
+        n: &mut i32,
+        wishartM: &mut i32,
+        wishartGamma: &mut f64,
+        alphas: &mut[f64],
+        means: &mut[f64],
+        icf: &mut[f64],
+        x: &mut[f64],
+    ) -> ();
+}
+
+
+fn range(mut b: i32, e: i32, body: fn(i32) -> ()) -> () {
+    while b < e {
+        body(b++)
+    }
+}
+
+fn max(a: f64, b: f64) -> (f64){
+    if a > b{
+        a
+    }else{
+        b
+    }
+}
+
+fn relu( x: f64 ) -> (f64){
+    if(x>=0.0){
+        x
+    }else{
+        0.1 * x
+    }
+}
+
+fn softmax(input: &[f64], output: &mut[f64], size: i32) -> (){
+  let mut sum = 0.0;
+  let mut i = 0;
+
+  while(i < size){
+    let e = exp(input(i));
+    sum += e;
+    output(i) = e;
+    i++;
+  }
+
+  i = 0;
+  while(i < size){
+    output(i) = output(i) / sum;
+    i++;
+  }
+}
+
+fn fully_connected(input: &[f64], output: &mut[f64], weights: &[f64], input_size: i32, output_size: i32) -> (){
+  let mut i = 0;
+  while(i < output_size){
+    let mut value = 0.0;
+    let mut j = 0;
+
+    while(j < input_size){
+      value += input(j) * weights(j + i * output_size);
+      j++;
+    }
+
+    output(i) = relu(value);
+    i++;
+  }
+}
+
+fn max_pooling(input: &[f64], output: &mut[f64], size_x:i32, size_y:i32, size_z:i32) -> (){
+  let mut z_i = 0;
+  while( z_i < size_z) {
+    let feature_offset = z_i * size_y * size_x;
+    let mut x_i = 0;
+    while ( x_i <= size_x - 2) {
+      let mut y_i = 0;
+      while(y_i <= size_y - 2){
+
+        let index = (z_i * size_y / 2 + y_i / 2 ) * size_x / 2 + x_i / 2;
+        output(index) = max(
+          max(
+            input(feature_offset + y_i * size_x + x_i),
+            input(feature_offset + y_i * size_x + x_i + 1)
+          ),
+          max(
+            input(feature_offset + (y_i + 1) * size_x + x_i),
+            input(feature_offset + (y_i + 1) * size_x + x_i + 1)
+          )
+        );
+
+        y_i += 2;
+      }
+
+      x_i += 2;
+    }
+
+    z_i++;
+  }
+}
+
+fn conv_layer(input: &[f64], output: &mut[f64], weights: &[f64], kernel_size: i32, size_x: i32, size_y: i32, input_features: i32, output_features: i32) -> (){
+
+  let offset: i32 = 2;
+
+  let mut z_i: i32 = 0;
+  while(z_i < output_features){
+    let mut x_i: i32 = 0;
+    while(x_i < size_x - kernel_size){
+      let mut y_i: i32 = 0;
+      while( y_i < size_y - kernel_size){
+        let mut value = 0.0;
+        let mut feature_i: i32 = 0;
+        while(feature_i < input_features) {
+          let mut offset_x: i32 = 0;
+          while (offset_x < kernel_size) {
+            let mut offset_y: i32 = 0;
+            while (offset_y < kernel_size) {
+              let data_index: i32 = feature_i * size_y * size_x + (y_i + offset_y) * size_x + x_i + offset_x;
+              let weight_index: i32 = offset_x + (offset_y + feature_i * kernel_size) * kernel_size;
+              value += input(data_index) * weights(weight_index);
+              offset_y++;
+            }
+
+            offset_x++;
+          }
+          feature_i++;
+        }
+
+        output((z_i * size_y + y_i + offset) * size_x + x_i + offset) = relu(value);
+        y_i++;
+      }
+
+      x_i++;
+    }
+
+    z_i++;
+  }
+}
+
+fn propagate(
+    conv_weights_1: &[f64],
+    conv_weights_2: &[f64],
+    fully_connected_weights_1: &[f64],
+    fully_connected_weights_2: &[f64],
+    input: &[f64],
+    output: &mut[f64])-> (){
+
+  let conv_out_1 = ~[28*28*8:f64];
+  let max_out_1 = ~[14*14*8:f64];
+  let conv_out_2 = ~[14*14*16:f64];
+  let max_out_2 = ~[7*7*16:f64];
+  let fully_connected_out = ~[256:f64];
+  let fully_connected_2_out = ~[10:f64];
+
+  conv_layer(input, conv_out_1, conv_weights_1, 5, 28, 28, 1, 8);
+  max_pooling(conv_out_1, max_out_1, 28, 28, 8);
+
+  conv_layer(max_out_1, conv_out_2, conv_weights_2, 5, 14, 14, 8, 16);
+  max_pooling(conv_out_2, max_out_2, 14, 14, 16);
+
+  fully_connected(max_out_2, fully_connected_out, fully_connected_weights_1, 7 * 7 * 16, 256);
+  fully_connected(fully_connected_out, fully_connected_2_out, fully_connected_weights_2, 256, 10);
+
+  softmax(fully_connected_2_out, output, 10);
+}
+
+fn runNnBenchmark(file: &[u8]) -> (){
+
+    let size_x = 28;
+    let size_y = 28;
+    let kernel_size = 5;
+
+    let kernel_size_sqr = kernel_size * kernel_size;
+    
+    let convolution_size_1 = kernel_size_sqr * 8;
+    let convolution_size_2 = kernel_size_sqr * 16;
+    
+    let fully_connected_size_1 = convolution_size_2 * 256;
+    let fully_connected_size_2 = 256 * 10;
+    
+    let weight_size = convolution_size_1 +convolution_size_2 + fully_connected_size_1 + fully_connected_size_2;
+
+
+    let weights = ~[weight_size:f64];
+
+    for i in range(0, weight_size){
+        weights(i) = randomDouble(-0.1, 0.1);
+    }
+
+
+    let conv_weights_1 =  weights;
+    let conv_weights_2 =  &weights(convolution_size_1) as &mut[f64];
+    let fully_connected_weights_1 =  &weights(convolution_size_1 + convolution_size_2) as &mut[f64];
+    let fully_connected_weights_2 =  &weights(convolution_size_1 + convolution_size_2 + fully_connected_size_1) as &mut[f64];
+
+    let input = ~[28*28:f64];
+    let output = ~[10:f64];
+
+
+    for i in range(0, 28*28){
+        input(i) = randomDouble(0.0, 1.0);
+    }
+
+    loss(
+        conv_weights_1,
+        conv_weights_2,
+        fully_connected_weights_1,
+        fully_connected_weights_2,
+        input,
+        0);
+
+    let label: i32 = 0;
+
+    //let Df = rev_diff(loss);
+    //let (y,pb) = Df(conv_weights_1, conv_weights_2, fully_connected_weights_1, fully_connected_weights_2, input, label);
+
+    for i in range(0, 10){
+        printDouble(output(i));
+    }
+}
+
+fn cross_entropy(output: &[f64], target: i32) -> (f64){
+  -log(output(target))
+}
+
+fn loss(
+    conv_weights_1: &[f64],
+    conv_weights_2: &[f64],
+    fully_connected_weights_1: &[f64],
+    fully_connected_weights_2: &[f64],
+    input: &[f64],
+    target: i32 ) -> (f64){
+
+  let output = ~[10:f64];
+  propagate(conv_weights_1, conv_weights_2, fully_connected_weights_1, fully_connected_weights_2, input, output);
+  cross_entropy(output, target)
+}
+
+fn main(argc: i32,argv :&[&[u8]]) -> i32 {
+    if argc < 2{
+        printString("No Benchmark specified");
+    }else{
+        let file = argv(1);
+        printString(file);
+        runNnBenchmark(file);
+    }
+
+    0
+}

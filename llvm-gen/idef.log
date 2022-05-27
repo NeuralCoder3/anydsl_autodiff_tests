@@ -1,0 +1,181 @@
+:: run
+::  + auto_diff
+module 'idef
+        
+        _802: ★: j_803 = {
+            «⊤∷nat; i32»
+        }
+        
+        main_716: Cn [:mem, Cn [:mem, i32]]: (mem_718, return_725) = {
+            _760: [:mem, :ptr («5∷nat; i32», 0∷nat)] = :alloc («5∷nat; i32», 0∷nat) mem_718;
+            _770: :ptr («⊤∷nat; i32», 0∷nat) = :bitcast (:ptr («⊤∷nat; i32», 0∷nat), :ptr («5∷nat; i32», 0∷nat)) _760#1∷i1;
+            _794: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 0∷i32;
+            _817: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_770, _794);
+            _826: :mem = :store (i32, 0∷nat) (_760#0∷i1, _817, 3∷i32);
+            _838: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 1∷i32;
+            _840: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_770, _838);
+            _845: :mem = :store (i32, 0∷nat) (_826, _840, 4∷i32);
+            _861: [:mem, i32] = :load (i32, 0∷nat) (_845, _817);
+            _871: [:mem, i32] = :load (i32, 0∷nat) (_861#0∷i1, _840);
+            _880: i32 = :Wrap_add (1∷nat, 4294967296∷nat) (_861#1∷i1, _871#1∷i1);
+            _884: ⊥∷★ = return_725 (_871#0∷i1, _880);
+            λ@(0∷i1) _884
+        }
+:: === state 0: main_716 ===
+:: === analyze ===
+:: === done ===
+:: === state 0: _802 ===
+:: === analyze ===
+:: === done ===
+:: finished
+module 'idef
+        
+        _802: ★: j_803 = {
+            «⊤∷nat; i32»
+        }
+        
+        main_716: Cn [:mem, Cn [:mem, i32]]: (mem_718, return_725) = {
+            _760: [:mem, :ptr («5∷nat; i32», 0∷nat)] = :alloc («5∷nat; i32», 0∷nat) mem_718;
+            _770: :ptr («⊤∷nat; i32», 0∷nat) = :bitcast (:ptr («⊤∷nat; i32», 0∷nat), :ptr («5∷nat; i32», 0∷nat)) _760#1∷i1;
+            _794: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 0∷i32;
+            _817: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_770, _794);
+            _826: :mem = :store (i32, 0∷nat) (_760#0∷i1, _817, 3∷i32);
+            _838: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 1∷i32;
+            _840: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_770, _838);
+            _845: :mem = :store (i32, 0∷nat) (_826, _840, 4∷i32);
+            _861: [:mem, i32] = :load (i32, 0∷nat) (_845, _817);
+            _871: [:mem, i32] = :load (i32, 0∷nat) (_861#0∷i1, _840);
+            _880: i32 = :Wrap_add (1∷nat, 4294967296∷nat) (_861#1∷i1, _871#1∷i1);
+            _884: ⊥∷★ = return_725 (_871#0∷i1, _880);
+            λ@(0∷i1) _884
+        }
+Finished Opti1
+:: run
+::  + partial_eval
+::  + beta_red
+::  + eta_red
+::  + eta_exp
+::  + ssa_constr
+module 'idef
+        
+        _1024: ★: j_1025 = {
+            «⊤∷nat; i32»
+        }
+        
+        main_900: Cn [:mem, Cn [:mem, i32]]: (mem_980, return_911) = {
+            _981: [:mem, :ptr («5∷nat; i32», 0∷nat)] = :alloc («5∷nat; i32», 0∷nat) mem_980;
+            _1051: :ptr («⊤∷nat; i32», 0∷nat) = :bitcast (:ptr («⊤∷nat; i32», 0∷nat), :ptr («5∷nat; i32», 0∷nat)) _981#1∷i1;
+            _1069: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 0∷i32;
+            _1071: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_1051, _1069);
+            _1076: :mem = :store (i32, 0∷nat) (_981#0∷i1, _1071, 3∷i32);
+            _1084: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 1∷i32;
+            _1086: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_1051, _1084);
+            _1091: :mem = :store (i32, 0∷nat) (_1076, _1086, 4∷i32);
+            _1093: [:mem, i32] = :load (i32, 0∷nat) (_1091, _1071);
+            _1096: [:mem, i32] = :load (i32, 0∷nat) (_1093#0∷i1, _1086);
+            _1117: i32 = :Wrap_add (1∷nat, 4294967296∷nat) (_1093#1∷i1, _1096#1∷i1);
+            _1119: ⊥∷★ = return_911 (_1096#0∷i1, _1117);
+            λ@(0∷i1) _1119
+        }
+:: === state 1: main_900 ===
+:: === analyze ===
+:: === done ===
+:: === state 2: _1024 ===
+:: === analyze ===
+:: === done ===
+:: finished
+module 'idef
+        
+        _1024: ★: j_1025 = {
+            «⊤∷nat; i32»
+        }
+        
+        main_900: Cn [:mem, Cn [:mem, i32]]: (mem_980, return_911) = {
+            _981: [:mem, :ptr («5∷nat; i32», 0∷nat)] = :alloc («5∷nat; i32», 0∷nat) mem_980;
+            _1051: :ptr («⊤∷nat; i32», 0∷nat) = :bitcast (:ptr («⊤∷nat; i32», 0∷nat), :ptr («5∷nat; i32», 0∷nat)) _981#1∷i1;
+            _1069: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 0∷i32;
+            _1071: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_1051, _1069);
+            _1076: :mem = :store (i32, 0∷nat) (_981#0∷i1, _1071, 3∷i32);
+            _1084: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 1∷i32;
+            _1086: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_1051, _1084);
+            _1091: :mem = :store (i32, 0∷nat) (_1076, _1086, 4∷i32);
+            _1093: [:mem, i32] = :load (i32, 0∷nat) (_1091, _1071);
+            _1096: [:mem, i32] = :load (i32, 0∷nat) (_1093#0∷i1, _1086);
+            _1117: i32 = :Wrap_add (1∷nat, 4294967296∷nat) (_1093#1∷i1, _1096#1∷i1);
+            _1119: ⊥∷★ = return_911 (_1096#0∷i1, _1117);
+            λ@(0∷i1) _1119
+        }
+Finished Opti2
+:: start cleanup
+:: iteration: 0
+:: start partial_evaluation
+:: end partial_evaluation
+:: iteration: 0
+:: end cleanup
+:: start lower2cff
+:: end lower2cff
+:: start cleanup
+:: iteration: 0
+:: end cleanup
+Finished Cleanup
+:: run
+::  + remem_elim
+::  + alloc2malloc
+::  + ret_wrap
+module 'idef
+        
+        _1964: ★: j_1965 = {
+            «⊤∷nat; i32»
+        }
+        
+        main_1840: Cn [:mem, Cn [:mem, i32]]: (mem_1920, return_1851) = {
+            _1921: [:mem, :ptr («5∷nat; i32», 0∷nat)] = :alloc («5∷nat; i32», 0∷nat) mem_1920;
+            _1991: :ptr («⊤∷nat; i32», 0∷nat) = :bitcast (:ptr («⊤∷nat; i32», 0∷nat), :ptr («5∷nat; i32», 0∷nat)) _1921#1∷i1;
+            _2009: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 0∷i32;
+            _2011: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_1991, _2009);
+            _2016: :mem = :store (i32, 0∷nat) (_1921#0∷i1, _2011, 3∷i32);
+            _2024: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 1∷i32;
+            _2026: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_1991, _2024);
+            _2031: :mem = :store (i32, 0∷nat) (_2016, _2026, 4∷i32);
+            _2033: [:mem, i32] = :load (i32, 0∷nat) (_2031, _2011);
+            _2036: [:mem, i32] = :load (i32, 0∷nat) (_2033#0∷i1, _2026);
+            _2057: i32 = :Wrap_add (1∷nat, 4294967296∷nat) (_2033#1∷i1, _2036#1∷i1);
+            _2059: ⊥∷★ = return_1851 (_2036#0∷i1, _2057);
+            λ@(0∷i1) _2059
+        }
+:: === state 0: main_1840 ===
+:: === analyze ===
+:: === done ===
+:: === state 0: _1964 ===
+:: === analyze ===
+:: === done ===
+:: === state 0: return_2060 ===
+:: === analyze ===
+:: === done ===
+:: finished
+module 'idef
+        
+        _1964: ★: j_1965 = {
+            «⊤∷nat; i32»
+        }
+        
+        main_1840: Cn [:mem, Cn [:mem, i32]]: (mem_1920, return_1851) = {
+            _2089: [:mem, :ptr («5∷nat; i32», 0∷nat)] = :malloc («5∷nat; i32», 0∷nat) (mem_1920, 20∷nat);
+            _2092: :ptr («⊤∷nat; i32», 0∷nat) = :bitcast (:ptr («⊤∷nat; i32», 0∷nat), :ptr («5∷nat; i32», 0∷nat)) _2089#1∷i1;
+            _2009: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 0∷i32;
+            _2094: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_2092, _2009);
+            _2096: :mem = :store (i32, 0∷nat) (_2089#0∷i1, _2094, 3∷i32);
+            _2024: : ⊤∷nat = :Conv_u2u (⊤∷nat, 4294967296∷nat) 1∷i32;
+            _2098: :ptr (i32, 0∷nat) = :lea (⊤∷nat, ‹⊤∷nat; i32›, 0∷nat) (_2092, _2024);
+            _2100: :mem = :store (i32, 0∷nat) (_2096, _2098, 4∷i32);
+            _2102: [:mem, i32] = :load (i32, 0∷nat) (_2100, _2094);
+            _2105: [:mem, i32] = :load (i32, 0∷nat) (_2102#0∷i1, _2098);
+            _2110: i32 = :Wrap_add (1∷nat, 4294967296∷nat) (_2102#1∷i1, _2105#1∷i1);
+            _2112: ⊥∷★ = return_2060 (_2105#0∷i1, _2110);
+            λ@(0∷i1) _2112
+        }
+            
+            return_2060: Cn [:mem, i32]: (_2113, _2114) = {
+                return_2062: ⊥∷★ = return_1851 @return_2060;
+                λ@(0∷i1) return_2062
+            }

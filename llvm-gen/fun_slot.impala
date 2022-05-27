@@ -1,0 +1,22 @@
+extern "C" {
+    fn g(fn(i32)->i32) -> i32;
+    fn h() -> i32;
+}
+
+fn sq(x:i32) -> i32 {
+    x*x
+}
+
+fn cube(x:i32) -> i32 {
+    x*x*x
+}
+
+fn main() -> i32 {
+    let mut f = sq;
+    if(g(f)>3) {
+        f=sq;
+    } else {
+        f=cube;
+    };
+    f(h())
+}

@@ -1,0 +1,35 @@
+extern "C" {
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn println(&[u8]) -> ();
+}
+
+fn pb(t: f64) -> (f64, f64) {
+    (1.0,0.0)
+}
+
+fn pb2(t: f64) -> (f64, f64) {
+    (0.0,0.0)
+}
+
+fn diff(x: f64, y: i32) -> (f64, fn (f64)->(f64,f64)) {
+    if x > 0.0{
+        (x, pb)
+    }else{
+        (0.0,pb2)
+    }
+}
+
+fn main() -> i32 {
+    let mut x = 1.2;
+    let (fx, gradient) = diff(x, 1);
+    let tangents  = gradient(1.0);
+    let xd = tangents(0);
+    let yd = tangents(0);
+    printDouble(fx);
+    // println("");
+    printDouble(xd);
+    printDouble(yd);
+    0
+}

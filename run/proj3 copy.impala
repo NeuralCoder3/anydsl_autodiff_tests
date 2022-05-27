@@ -1,0 +1,23 @@
+extern "C" {
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn println(&[u8]) -> ();
+}
+
+fn main() -> i32 {
+
+    let diff = (42.0,(3.0,0.0));
+
+
+    let (fx, gradient) = diff;
+    let tangents  = gradient;
+    let xd = tangents(0);
+    let yd = tangents(0);
+    printDouble(fx);
+    // println("");
+    printDouble(xd);
+    printDouble(yd);
+
+    0
+}

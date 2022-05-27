@@ -1,0 +1,13 @@
+fn f(a: f32) -> (f32, f32) {
+    (a * a, a * a * a)
+}
+fn main() -> i32 {
+    let Df = rev_diff(f);
+    let Gf = Df(4f); 
+    let y  = Gf(0);
+    let y2 = Gf(1);
+    let pb = Gf(2);
+    let r = y as i32;
+    let q = pb(0f,1f) as i32; 
+    1000 * r + q
+}
