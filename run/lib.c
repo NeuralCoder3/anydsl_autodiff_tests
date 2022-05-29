@@ -186,3 +186,26 @@ float reify(void* x) {
 double reify_diff(float x) {
     return 0.0f;
 }
+
+
+
+void* represent(float x) {
+    // use thorin_malloc?
+    // use &x instead?
+    float* p = malloc(sizeof(float));
+    *p = x;
+    return p;
+}
+
+float unwrap(void* x) {
+    float* p = (float*)x;
+    float y = *p;
+    return y;
+}
+
+float represent_diff(float x) {
+    return 1.0f;
+}
+
+void* unwrap_diff(void* x) {
+}

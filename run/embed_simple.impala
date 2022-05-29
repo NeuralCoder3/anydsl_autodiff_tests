@@ -1,0 +1,54 @@
+extern "C" {
+    fn represent(f32) -> &();
+    fn unwrap(&()) -> f32;
+
+    fn represent_diff(f32) -> f32;
+    fn unwrap_diff(&()) -> &();
+
+    fn printFloat(f32) -> ();
+    fn printDouble(f64) -> ();
+    fn printInteger(i32) -> ();
+    fn println(&[u8]) -> ();
+}
+
+fn f(x: f32) -> f32 {
+    let a = represent(x);
+    // let y = unwrap(a);
+    let y = x;
+    y
+
+    // diff:
+    // repr : f32 -> &()
+    // unwrap: &() -> f32
+
+    // repr*: &() -> f32
+    // unwrap*: f32 -> &()
+
+    // f*(s) = x*(repr*(unwrap*(s)))
+
+}
+
+extern fn use_represent_diff(x:f32) -> () {
+    let a = represent_diff(x);
+    let p = represent(x);
+    let y = unwrap_diff(p);
+    ()
+}
+
+fn main() -> i32 {
+
+    let Df = rev_diff(f);
+    let x = 3f;
+    let yp = Df(x);
+    let y  = yp(0);
+    let yP = yp(1)(1f);
+    let r = y as i32;
+
+    println("f(x)");
+    printFloat(y);
+    println("derivatives");
+    printFloat(yP);
+    0
+    // x*(2x)² = 4x³, 12x²
+}
+
